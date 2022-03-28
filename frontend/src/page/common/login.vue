@@ -1,39 +1,45 @@
 <template>
 	<div class="login_page">
-		<el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form">
-			<h3 class="title">{{ title }}</h3>
-			<el-form-item prop="email">
-				<el-input v-model="loginForm.email" type="text" prefix-icon="el-icon-s-check"  auto-complete="off" placeholder="Email" clearable></el-input>
-			</el-form-item>
-			<el-form-item prop="password">
-				<el-input v-model="loginForm.password" auto-complete="off" prefix-icon="el-icon-lock"  show-password  placeholder="Password" @keyup.enter.native="handleLogin"></el-input>
-			</el-form-item>
-			<el-form-item prop="gt" label="Login as">
-				<el-radio v-model="loginForm.gt" label="admin">Librarian</el-radio>
-				<el-radio v-model="loginForm.gt" label="user">User</el-radio>
-			</el-form-item>
-			<el-form-item prop="remember_me">
-				<el-checkbox v-model="loginForm.remember_me" style="float:left;">Remember Me</el-checkbox>
-				<el-link type="primary" style="float:right;" href="/#/register">Not a member yet?<i class="el-icon-s-custom el-icon--right"></i></el-link>
-			</el-form-item>
-			<el-form-item>
-				<el-button :loading="loading" size="medium" type="primary" style="width:100%;" @click.native.prevent="handleLogin">
-					<span v-if="!loading">Log in</span>
-					<span v-else>Try to Log in...</span>
-				</el-button>
-			</el-form-item>
-		</el-form>
-		<!--  footer  -->
-		<div class="el-login-footer">
-			<span>Copyright@2022 AYDbook.twsbay.com All Rights Reserved.</span>
+		<div class="login_languge_switcher">
+			<LanguageSwitcher></LanguageSwitcher>
+		</div>
+			<div class="login_panel">		
+			<el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form">
+				<h3 class="title">{{ title }}</h3>
+				<el-form-item prop="email">
+					<el-input v-model="loginForm.email" type="text" prefix-icon="el-icon-s-check"  auto-complete="off" placeholder="Email" clearable></el-input>
+				</el-form-item>
+				<el-form-item prop="password">
+					<el-input v-model="loginForm.password" auto-complete="off" prefix-icon="el-icon-lock"  show-password  placeholder="Password" @keyup.enter.native="handleLogin"></el-input>
+				</el-form-item>
+				<el-form-item prop="gt" label="Login as">
+					<el-radio v-model="loginForm.gt" label="admin">Librarian</el-radio>
+					<el-radio v-model="loginForm.gt" label="user">User</el-radio>
+				</el-form-item>
+				<el-form-item prop="remember_me">
+					<el-checkbox v-model="loginForm.remember_me" style="float:left;">Remember Me</el-checkbox>
+					<!--<el-link type="primary" style="float:right;" href="/#/register">Not a member yet?<i class="el-icon-s-custom el-icon--right"></i></el-link>-->
+				</el-form-item>
+				<el-form-item>
+					<el-button :loading="loading" size="medium" type="primary" style="width:100%;" @click.native.prevent="handleLogin">
+						<span v-if="!loading">Log in</span>
+						<span v-else>Try to Log in...</span>
+					</el-button>
+				</el-form-item>
+			</el-form>
+			<div class="el-login-footer">
+				<span>Copyright@2022 AYDbook.twsbay.com All Rights Reserved.</span>
+			</div>
 		</div>
 	</div>
 </template>
 
 <script>
 import {decrypt, encrypt} from "@/utils/jsencrypt";
+import LanguageSwitcher from "../../components/languages.vue";
 import md5 from "js-md5";
 export default {
+	components: {LanguageSwitcher},
 	data(){
 		var validateEmail = (rule, value ,callback) => {
 			const reg_email = /^[a-z0-9](?:[-_.+]?[a-z0-9]+)*@[a-zA-z0-9]+\.[a-zA-Z]{1,3}$/i;
@@ -163,12 +169,16 @@ export default {
 
 <style rel="stylesheet/scss" lang="scss" scoped>
 	.login_page {
-		display: flex;
-		justify-content: center;
-		align-items: center;
 		height: 100%;
 		background-image: url("../../assets/images/login-background.jpg");
 		background-size: cover;
+	}
+	.login_panel {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin:0 auto;
+		height: 90%;
 	}
 	.title {
 		margin: 0px auto 30px auto;
@@ -221,5 +231,17 @@ export default {
 	}
 	.login-code-img {
 		height: 38px;
+	}
+	
+	.login_languge_switcher {
+		position: relative;
+		float: right;
+		height: 10%;
+		width:100px;
+		margin:10px 20px 0 0;
+	}
+	.login_languge_switcher .el-dropdown-link {
+		cursor: pointer;
+		color: #ffffff!important;
 	}
 </style>

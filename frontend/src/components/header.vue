@@ -10,16 +10,7 @@
 						<a href="javascript:void(0);">Logout</a>					
 					</li>
 					<li>
-						<el-dropdown :hide-on-click="false" trigger="click" @command="handleSetLanguage">
-							<span class="el-dropdown-link">
-								Languages<i class="el-icon-arrow-down el-icon--right"></i>
-							</span>
-							<el-dropdown-menu slot="dropdown">
-								<el-dropdown-item command="zh" :disabled="language == 'zh'">中文</el-dropdown-item>
-								<el-dropdown-item command="en" :disabled="language == 'en'">English</el-dropdown-item>
-								<el-dropdown-item command="sw" :disabled="language == 'sw'">Swedish</el-dropdown-item>
-							</el-dropdown-menu>
-						</el-dropdown>
+						<LanguageSwitcher></LanguageSwitcher>
 					</li>
 				</ul>
 			</div>
@@ -28,31 +19,11 @@
 </template>
 
 <script>
+	import LanguageSwitcher from "./languages.vue";
 	export default {
-		name: 'header',				
-		computed: {
-		    language() {
-				return this.$store.state.u_lang
-		    }			
-		},
-		methods: {
-			handleSetLanguage(lang) {
-				//Set the language
-				this.$i18n.locale = lang
-				
-				//store it
-				this.$store.dispatch('setLanguage', lang)
-				
-				this.$message({
-					message: 'Switch language success!',
-					type: 'success'
-				})
-				
-				//trigger the reload event
-				this.$emit('handerevent')
-				
-				location.reload();
-			}
+		name: 'header',	
+		components: {
+			LanguageSwitcher
 		}
 	}
 </script>
@@ -111,8 +82,5 @@
 	.el-dropdown-link {
 		cursor: pointer;
 		color: #409EFF;
-	}
-	.el-icon-arrow-down {
-		font-size: 12px;
 	}
 </style>
