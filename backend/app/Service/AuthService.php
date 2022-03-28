@@ -41,14 +41,14 @@ class AuthService{
 	public function login($credentials = []){
 		if(!($this->checkAuthType($this->auth_type))){
 			$this->auth_result['code'] = 400;
-			$this->auth_result['msg'] = 'Please choose your login role.';
+			$this->auth_result['msg'] = trans('auth.wrong_auth_type');
 			return $this->auth_result;
         }
 
         $token = null;
         if(!($token = $this->auth->attempt($credentials))){
         	$this->auth_result['code'] = 401;
-			$this->auth_result['msg'] = 'Your credentials are incorrect.';
+			$this->auth_result['msg'] = trans('auth.wrong_credentials');
 			return $this->auth_result;
         }
 
@@ -65,7 +65,7 @@ class AuthService{
 	public function logout(){
 		if(!($this->checkAuthType($this->auth_type))){
 			$this->auth_result['code'] = 400;
-			$this->auth_result['msg'] = 'Please choose your login role.';
+			$this->auth_result['msg'] = trans('auth.wrong_auth_type');
 			return $this->auth_result;
         }
 
@@ -82,7 +82,7 @@ class AuthService{
     public function refresh(){
     	if(!($this->checkAuthType($this->auth_type))){
 			$this->auth_result['code'] = 400;
-			$this->auth_result['msg'] = 'Please choose your login role.';
+			$this->auth_result['msg'] = trans('auth.wrong_auth_type');
 			return $this->auth_result;
         }
 

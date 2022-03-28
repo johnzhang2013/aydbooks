@@ -4,9 +4,14 @@ import store from '../store';
 axios.interceptors.request.use(
 	config => {
 		let token = window.localStorage.getItem('u_token');
+		let lang = window.localStorage.getItem('u_lang') || 'en';
 		if(token){
 			config.headers.Authorization = 'Bearer '+ token;
 		}
+		
+		//set this in each request as there is no session stored at the server side
+		config.headers.AppLocale = lang;
+		
 		return config;
 	},
 	error => {

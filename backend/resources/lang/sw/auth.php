@@ -13,10 +13,10 @@ return [
     |
     */
 
-    'failed' => 'These credentials do not match our records.',
-    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'failed' => 'Dessa uppgifter stämmer inte överens med våra uppgifter.',
+    'throttle' => 'För många inloggningsförsök. Försök igen om :seconds sekunder.',
 
-    'wrong_auth_type' => 'Please choose your login role.',
-    'wrong_credentials' => 'Your credentials are incorrect.',
+    'wrong_auth_type' => 'Välj din inloggningsroll.',
+    'wrong_credentials' => 'Dina uppgifter är felaktiga.',
 
 ];
