@@ -153,8 +153,8 @@ export default {
 						this.$store.dispatch('afterLoginAction', res.data).then(() => {
 							if(this.loginForm.gt == 'admin'){//you are logged in as an admin then it goes to member manage page
 								this.$router.replace('/dashboard');
-							}else{//you are logged in as a member then it goes to the member profile page
-								this.$router.replace('/user');
+							}else{//you are logged in as a member then it goes to the home page
+								this.$router.replace('/');
 							}
 						});
 					}else{
