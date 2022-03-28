@@ -48,7 +48,7 @@ Finally, just depoly it as you depoly other website in nginx.
 
 `.....`
 
-`root    /YOUR_WEB_ROOT/**frontend/dist**;`
+`root    /YOUR_WEB_ROOT/frontend/dist;`
 
 `location / {`
 
@@ -62,7 +62,7 @@ Finally, just depoly it as you depoly other website in nginx.
 
 `location ~ \.php$ {`
 
-		`root	/YOUR_WEB_ROOT/**backend/public**;`
+		`root	/YOUR_WEB_ROOT/backend/public;`
     
 		`fastcgi_pass unix:/dev/shm/php-cgi.sock;`
     
