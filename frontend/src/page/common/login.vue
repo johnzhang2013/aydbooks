@@ -3,27 +3,26 @@
 		<div class="login_languge_switcher">
 			<LanguageSwitcher></LanguageSwitcher>
 		</div>
-			<div class="login_panel">		
+		<div class="login_panel">
 			<el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form">
-				<h3 class="title">{{ title }}</h3>
+				<h3 class="title">{{ lang_texts.title }}</h3>
 				<el-form-item prop="email">
-					<el-input v-model="loginForm.email" type="text" prefix-icon="el-icon-s-check"  auto-complete="off" placeholder="Email" clearable></el-input>
+					<el-input v-model="loginForm.email" type="text" prefix-icon="el-icon-s-check"  auto-complete="off" :placeholder="lang_texts.placeholder.email" clearable></el-input>
 				</el-form-item>
 				<el-form-item prop="password">
-					<el-input v-model="loginForm.password" auto-complete="off" prefix-icon="el-icon-lock"  show-password  placeholder="Password" @keyup.enter.native="handleLogin"></el-input>
+					<el-input v-model="loginForm.password" auto-complete="off" prefix-icon="el-icon-lock"  show-password  :placeholder="lang_texts.placeholder.password" @keyup.enter.native="handleLogin"></el-input>
 				</el-form-item>
-				<el-form-item prop="gt" label="Login as">
-					<el-radio v-model="loginForm.gt" label="admin">Librarian</el-radio>
-					<el-radio v-model="loginForm.gt" label="user">User</el-radio>
+				<el-form-item prop="gt" :label="lang_texts.login_as">
+					<el-radio v-model="loginForm.gt" label="admin">{{ lang_texts.login_as_admin }}</el-radio>
+					<el-radio v-model="loginForm.gt" label="user">{{ lang_texts.login_as_member }}</el-radio>
 				</el-form-item>
 				<el-form-item prop="remember_me">
-					<el-checkbox v-model="loginForm.remember_me" style="float:left;">Remember Me</el-checkbox>
-					<!--<el-link type="primary" style="float:right;" href="/#/register">Not a member yet?<i class="el-icon-s-custom el-icon--right"></i></el-link>-->
+					<el-checkbox v-model="loginForm.remember_me" style="float:left;">{{ lang_texts.rememberme }}</el-checkbox>
 				</el-form-item>
 				<el-form-item>
 					<el-button :loading="loading" size="medium" type="primary" style="width:100%;" @click.native.prevent="handleLogin">
-						<span v-if="!loading">Log in</span>
-						<span v-else>Try to Log in...</span>
+						<span v-if="!loading">{{ lang_texts.btn_login }}</span>
+						<span v-else>{{ lang_texts.btn_loging }}</span>
 					</el-button>
 				</el-form-item>
 			</el-form>
@@ -42,23 +41,40 @@ export default {
 	components: {LanguageSwitcher},
 	data(){
 		var validateEmail = (rule, value ,callback) => {
-			const reg_email = /^[a-z0-9](?:[-_.+]?[a-z0-9]+)*@[a-zA-z0-9]+\.[a-zA-Z]{1,3}$/i;
-			if (!reg_email.test(value.trim())) {
-				callback(new Error('Email-address is invalid'));
-			} else {
-				callback();
+			const len_email = value.trim().length;
+			if (len_email == 0) {
+				callback(new Error(this.$t('forms.login.validation.empty_email')));
+			}else{
+				const reg_email = /^[a-z0-9](?:[-_.+]?[a-z0-9]+)*@[a-zA-z0-9]+\.[a-zA-Z]{1,3}$/i;
+				if (!reg_email.test(value.trim())) {					
+					callback(new Error(this.$t('forms.login.validation.invalid_email')));
+				} else {
+					callback();
+				}
 			}
 		};
 		var validatePass = (rule, value, callback) => {
 			if (value.length < 6) {
-				callback(new Error('You must input 6 chars at least'));
+				callback(new Error(this.$t('forms.login.validation.passwd_length')));
 			} else {
 				callback();
 			}
 		};
 		
 		return{
-			title: 'AYD Book Login',
+			lang_texts: {
+				title: this.$t('pages.login.title'),
+				login_as: this.$t('pages.login.loginas'),
+				login_as_admin: this.$t('pages.login.login_as_admin'),
+				login_as_member: this.$t('pages.login.login_as_member'),
+				rememberme: this.$t('pages.login.rememberme'),
+				btn_login: this.$t('pages.login.btn_login'),
+				btn_loging: this.$t('pages.login.btn_loging'),
+				placeholder: {
+					email: this.$t('placeholder.login.email'),
+					password: this.$t('placeholder.login.password'),
+				}
+			},
 			loading: false,
 			loginForm: {
 				email: '',
@@ -92,7 +108,6 @@ export default {
 					
 					this.doLogin();
 				} else {
-					this.$message('Some of your credentials are missed.');
 					this.loading = false;
 					return false;
 				}

@@ -43,7 +43,7 @@
 				this.$store.dispatch('setLanguage', lang)
 				
 				this.$message({
-					message: 'Switch language success!',
+					message: this.$t("messages.common.lang_switch_success"),
 					type: 'success'
 				})
 				
