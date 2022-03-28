@@ -1,5 +1,5 @@
 # aydbooks
-**A demo project based on Laravel5.8 and Vue2**
+**A demo project based on Laravel5.8 and Vue2(Frontend separated with Backend)**
 
 **Preconditions for this app to run**
 1. php 7.1+
@@ -40,7 +40,7 @@
 **Instructions for the Frontend depolyment**
 1. cd YOUR_WEB_ROOT/frontend and create a new directory(dist) via 'mkdir dist' command;
 2. Run `npm install`
-
+3. Run `npm run build`
 
 Finally, just depoly it as you depoly other website in nginx.
 
@@ -48,7 +48,7 @@ Finally, just depoly it as you depoly other website in nginx.
 
 `.....`
 
-`root    /YOUR_WEB_ROOT/**frontend/dist**;`
+`root    /YOUR_WEB_ROOT/frontend/dist;`
 
 `location / {`
 
@@ -62,7 +62,7 @@ Finally, just depoly it as you depoly other website in nginx.
 
 `location ~ \.php$ {`
 
-		`root	/YOUR_WEB_ROOT/**backend/public**;`
+		`root	/YOUR_WEB_ROOT/backend/public;`
     
 		`fastcgi_pass unix:/dev/shm/php-cgi.sock;`
     
