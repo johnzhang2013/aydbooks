@@ -77,5 +77,13 @@ module.exports = {
 			btn_login: 'Logga in',
 			btn_loging: 'Försök att logga in...'
 		}
+	},
+	
+	navbar: {
+		login: 'Logga in',
+		home: 'Hem',
+		greeting: 'Hallå',
+		admin_dashboard: 'Hantera Böcker',
+		user_profile: 'Ditt konto'
 	}
 }

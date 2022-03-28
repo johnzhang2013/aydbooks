@@ -77,5 +77,13 @@ module.exports = {
 			btn_login: '登录',
 			btn_loging: '登录中...'
 		}
-	}
+	},
+	
+	navbar: {
+		greeting: '您好',
+		login: '登录',
+		home: '首页',
+		admin_dashboard: '图书管理',
+		user_profile: '个人中心'
+	}	
 }

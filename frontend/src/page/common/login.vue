@@ -3,6 +3,9 @@
 		<div class="login_languge_switcher">
 			<LanguageSwitcher></LanguageSwitcher>
 		</div>
+		<div class="common_nav_bar">
+			<CommonNavBar :workfor="home"></CommonNavBar>
+		</div>
 		<div class="login_panel">
 			<el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form">
 				<h3 class="title">{{ lang_texts.title }}</h3>
@@ -36,9 +39,10 @@
 <script>
 import {decrypt, encrypt} from "@/utils/jsencrypt";
 import LanguageSwitcher from "../../components/languages.vue";
+import CommonNavBar from "./comm_navbar.vue";
 import md5 from "js-md5";
 export default {
-	components: {LanguageSwitcher},
+	components: {LanguageSwitcher, CommonNavBar},
 	data(){
 		var validateEmail = (rule, value ,callback) => {
 			const len_email = value.trim().length;
@@ -247,7 +251,13 @@ export default {
 	.login-code-img {
 		height: 38px;
 	}
-	
+	.common_nav_bar{
+		position: relative;
+		float: right;
+		height: 10%;
+		margin:12px 0 0 0px;
+		padding-right:20px;
+	}
 	.login_languge_switcher {
 		position: relative;
 		float: right;

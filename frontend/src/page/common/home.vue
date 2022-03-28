@@ -3,6 +3,9 @@
 		<div class="login_languge_switcher">
 			<LanguageSwitcher></LanguageSwitcher>
 		</div>
+		<div class="common_nav_bar">
+			<CommonNavBar :workfor="page_name"></CommonNavBar>
+		</div>
 		<div class="books_container">
 			<h1 style="text-align: center;">{{ this.$t('pages.home.title') }}</h1>		
 			<el-divider />
@@ -92,11 +95,14 @@
 
 <script>
 	import LanguageSwitcher from "../../components/languages.vue";
+	import CommonNavBar from "./comm_navbar.vue";
+	
 	export default {
-		components: {LanguageSwitcher},
+		components: {LanguageSwitcher, CommonNavBar},
 		
 		data(){
 			return{
+				page_name: 'home',
 				loading: false,
 				lang_texts:{
 					empty_results: this.$t('pages.home.list.empty_result'),
@@ -268,6 +274,13 @@
 	}
 	.lsa-warning{
 		background-color: #ffe8ae!important;
+	}
+	.common_nav_bar{
+		position: relative;
+		float: right;
+		height: 10%;
+		margin:12px 0 0 0px;
+		padding-right:20px;
 	}
 	.login_languge_switcher {
 		position: relative;

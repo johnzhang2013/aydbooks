@@ -77,5 +77,13 @@ module.exports = {
 			btn_login: 'Login',
 			btn_loging: 'Try to log in...'
 		}
+	},
+	
+	navbar: {
+		greeting: 'Hello',
+		login: 'Log in',
+		home: 'Home',
+		admin_dashboard: 'Library Management',
+		user_profile: 'My Profile'
 	}
 }
