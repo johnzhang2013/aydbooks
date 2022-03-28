@@ -70,7 +70,7 @@ module.exports = {
 		
 		login: {
 			title: 'Logga in på AYD Bok Systemet',
-			loginas: 'Inloggningsroll',
+			loginas: 'Inloggning Roll',
 			rememberme: 'Kom ihåg mig',
 			login_as_admin: 'Bibliotekarie',
 			login_as_member: 'Medlem',
