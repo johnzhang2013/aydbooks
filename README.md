@@ -1,5 +1,5 @@
 # aydbooks
-**A demo project based on Laravel5.8 and Vue2**
+**A demo project based on Laravel5.8 and Vue2(Frontend separated with Backend)**
 
 **Preconditions for this app to run**
 1. php 7.1+
