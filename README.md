@@ -40,7 +40,7 @@
 **Instructions for the Frontend depolyment**
 1. cd YOUR_WEB_ROOT/frontend and create a new directory(dist) via 'mkdir dist' command;
 2. Run `npm install`
-
+3. Run `npm run build`
 
 Finally, just depoly it as you depoly other website in nginx.
 
