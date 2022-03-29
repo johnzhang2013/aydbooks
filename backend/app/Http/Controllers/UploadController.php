@@ -39,7 +39,6 @@ class UploadController extends CommonController
         //step3 save it to aws s3
         $aws3s_objurls = [];
         $upload_result['data']['img_urls'] = [];
-
         foreach($resized_image_paths as $_resizde_imgpath){
             $aws3s_res = $this->uplaodToAwss3(md5($_resizde_imgpath), $_resizde_imgpath);
             if($aws3s_res['status'] == true){
@@ -77,13 +76,15 @@ class UploadController extends CommonController
         ];
 
         $irs = ImageResizeService::getInstance();
+
+        $src_image_path_abs = storage_path('app/').$src_image_path;
         $dst_image_path = storage_path('app/images/');
 
         $resized_image_paths = [];        
         foreach($size_levels as $_slevel){
             $rdst_image_path = $dst_image_path.$_slevel['dst_subpath'].'/';
 
-            $resized_image_paths[$_slevel['dst_subpath']] = $irs->resize($src_image_path, $rdst_image_path, $_slevel['size_width']);
+            $resized_image_paths[$_slevel['dst_subpath']] = $irs->resize($src_image_path_abs, $rdst_image_path, $_slevel['size_width']);
         }
 
         return $resized_image_paths;
