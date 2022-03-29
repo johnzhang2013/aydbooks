@@ -65,12 +65,12 @@ class UploadController extends CommonController
             ],
 
             [
-                'size_width' => 200,
+                'size_width' => 700,
                 'dst_subpath' => 'medium'
             ],
 
             [
-                'size_width' => 200,
+                'size_width' => 1000,
                 'dst_subpath' => 'large'
             ]
         ];
