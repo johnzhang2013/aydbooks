@@ -39,5 +39,7 @@ class ImageResizeService{
 		//resize it and save it
 		$image->resize($dst_image_width, $dst_image_height);
 		$image->save($dst_image_path.$image_fname);
+
+		return $dst_image_path.$image_fname;
 	}
 }
