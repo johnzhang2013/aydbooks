@@ -15,6 +15,7 @@
 2. lcobucci/jwt 3.3.3
 3. guzzlehttp/guzzle ^6.5(**Laravel 6+ may come with it at default**)
 4. aws/aws-sdk-php ^3.216
+5. intervention/image ^2.7
 
 **For Vue2 part**
 1. axios ^0.26.0
