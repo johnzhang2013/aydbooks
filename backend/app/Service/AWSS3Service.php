@@ -36,7 +36,7 @@ class AWSS3Service{
 			'status' => false,
 			'msg' => null,
 			'data' => null
-		]
+		];
 
 		try{
 			$f = fopen($file_path, 'r');
