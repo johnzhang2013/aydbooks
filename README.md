@@ -14,6 +14,7 @@
 1. tymon/jwt-auth ^1.0
 2. lcobucci/jwt 3.3.3
 3. guzzlehttp/guzzle ^6.5(**Laravel 6+ may come with it at default**)
+4. aws/aws-sdk-php ^3.216
 
 **For Vue2 part**
 1. axios ^0.26.0
