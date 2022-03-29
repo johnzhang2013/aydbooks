@@ -34,10 +34,17 @@ module.exports = {
 	
 	forms: {
 		login: {
-			validation : {
+			validation: {
 				empty_email: '您必须输入您的邮箱',
 				invalid_email: '您的邮箱格式有误',
 				passwd_length: '您必须至少输入6个字符'
+			}
+		},
+		uploadimg: {
+			validation: {
+				upload_file_type: '上传的图片只能是jpg/png格式!',
+				upload_file_size: '上传的图片大小不能超过{file_size_max}MB!',
+				upload_files_max: '已达最大允许上传的图片数量{limit_total}张'
 			}
 		}
 	},
@@ -76,6 +83,12 @@ module.exports = {
 			rememberme: '记住我',
 			btn_login: '登录',
 			btn_loging: '登录中...'
+		},
+		
+		uploadimg: {
+			upload_btn_text1: '将图片拖到此处，或',
+			upload_btn_text2: '点击上传',
+			upload_tip: '只能上传jpg/png文件且不超过{file_size_max}MB，最多{limit_total}张图片!'
 		}
 	},
 	

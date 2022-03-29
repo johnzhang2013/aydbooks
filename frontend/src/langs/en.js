@@ -39,6 +39,14 @@ module.exports = {
 				invalid_email: 'Email address is invalid',
 				passwd_length: 'You need to enter at least 6 characters'
 			}
+		},
+
+		uploadimg: {
+			validation: {
+				upload_file_type: 'We only accept jpg/png image.',
+				upload_file_size: 'The uploadable image size cannot exceed {file_size_max}MB!',
+				upload_files_max: 'Sorry, we only accept {limit_total} images at max each time.'
+			}
 		}
 	},
 	
@@ -76,6 +84,12 @@ module.exports = {
 			login_as_member: 'Member',			
 			btn_login: 'Login',
 			btn_loging: 'Try to log in...'
+		},
+		
+		uploadimg: {
+			upload_btn_text1: 'Please drag a file here, or',
+			upload_btn_text2: 'Click here to upload',
+			upload_tip: 'Only a jpg/png file can be accepted, and each image more than {file_size_max}MB,{limit_total} images at max'
 		}
 	},
 	

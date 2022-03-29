@@ -39,6 +39,13 @@ module.exports = {
 				invalid_email: 'Din e-post är i fel format',
 				passwd_length: 'Du måste ange minst 6 tecken'
 			}
+		},
+		uploadimg: {
+			validation: {
+				upload_file_type: 'Uppladdade bilder kan endast vara i jpg/png-format!',
+				upload_file_size: 'Storleken på bilden du vill ladda upp får inte överstiga {file_size_max}MB!',
+				upload_files_max: 'Tyvärr, vi accepterar bara {limit_total} bilder vid max varje gång'
+			}
 		}
 	},
 	
@@ -76,6 +83,12 @@ module.exports = {
 			login_as_member: 'Medlem',
 			btn_login: 'Logga in',
 			btn_loging: 'Försök att logga in...'
+		},
+		
+		uploadimg: {
+			upload_btn_text1: 'Dra filer hit, eller',
+			upload_btn_text2: 'Klicka för att ladda upp',
+			upload_tip: 'Endast jpg/png filer kan laddas upp, och bildstorleken bör inte överstiga {file_size_max}MB, Upp till {limit_total} bilder'
 		}
 	},
 	

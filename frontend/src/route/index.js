@@ -1,6 +1,7 @@
 //The public common page
 const Home = () => import("../page/common/home.vue")
 const Login = () => import("../page/common/login.vue")
+const ImageUpload = () => import("../page/common/upload_image.vue");
 
 //The user private page
 //const MyBorrowed = () => import("../page/user/myborrowed.vue")
@@ -16,6 +17,7 @@ const Author = () => import("../page/admin/author.vue")
 export default [
 	{ path: '/',  name: 'home', component: Home },
 	{ path: '/login', name: 'user_login', component: Login },
+	{ path: '/uploadimg', name: 'uploadimg', component: ImageUpload },
 	
 	//{ path: '/myborrowed', name: 'myborrowed', component: MyBorrowed },
 	//{ path: '/profile', name: 'user_profile', component: Profile },
