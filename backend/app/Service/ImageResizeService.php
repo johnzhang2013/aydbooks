@@ -19,14 +19,15 @@ class ImageResizeService{
 	}
 
 	//Resize a image with a specific width and aspecl ratio
-	public function resize($image_fname = '', $src_image_path = '', $dst_image_path = '', $resize_to_width = 0){
-		$image = InterventionImage::make($src_image_path.$image_fname);
+	public function resize($src_image_path = '', $dst_image_path = '', $resize_to_width = 0){
+		$image = InterventionImage::make($src_image_path);
+		$image_fname = basename($src_image_path);
 
 		$image->resize($resize_to_width, null, function($constraint){
 			$constraint->aspeclRatio();
 			$constraint->upsize();
 		});
 
-		$image->save($dst_image_path);
+		$image->save($dst_image_path.$image_fname);
 	}
 }

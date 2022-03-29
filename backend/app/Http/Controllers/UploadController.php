@@ -29,14 +29,12 @@ class UploadController extends CommonController
         }
         $uimage = $request->file('uimage');
 
-        $image_fname = $uimage->getClientOriginalName();
-
         //step1 move this uploaded image to a path
         $src_image_path = $uimage->store('images/src');
 
         //step2 resize this image as we want
         //Todo use Intervention/image libiray to resize this image into 3 size(large/medium/small) images
-        $resized_image_paths = $this->resizeImage($image_fname, $src_image_path);
+        $resized_image_paths = $this->resizeImage($src_image_path);
 
         //step3 save it to aws s3
         $aws3s_objurls = [];
@@ -59,7 +57,7 @@ class UploadController extends CommonController
         return response()->json($upload_result);
     }
 
-    private function resizeImage($image_fname = '', $src_image_path = ''){
+    private function resizeImage($src_image_path = ''){
         //we set fixed definitions for the size_level here, you can modify it as you want or config it in other places
         $size_levels = [
             [
@@ -85,7 +83,7 @@ class UploadController extends CommonController
         foreach($size_levels as $_slevel){
             $rdst_image_path = $dst_image_path.$_slevel['dst_subpath'].'/';
 
-            $resized_image_paths[$_slevel['dst_subpath']] = $irs->resize($image_fname, $src_image_path, $rdst_image_path, $_slevel['size_width']);
+            $resized_image_paths[$_slevel['dst_subpath']] = $irs->resize($src_image_path, $rdst_image_path, $_slevel['size_width']);
         }
 
         return $resized_image_paths;

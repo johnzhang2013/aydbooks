@@ -22,7 +22,7 @@ class ResizeImageSeeder extends Seeder
         
 
         $ris = ImageResizeService::getInstance();
-        $rimg_path = $ris->resize($image_file, $src_image_path, $dst_image_path, 200);
+        $rimg_path = $ris->resize($src_image_path.$image_file, $dst_image_path, 200);
         echo $rimg_path.PHP_EOL;
     }
 }
