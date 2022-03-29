@@ -98,6 +98,7 @@ module.exports = {
 		login: 'Log in',
 		home: 'Home',
 		admin_dashboard: 'Library Management',
-		user_profile: 'My Profile'
+		user_profile: 'My Profile',
+		upload_img: 'Image Upload'
 	}
 }

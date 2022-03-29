@@ -97,6 +97,7 @@ module.exports = {
 		home: 'Hem',
 		greeting: 'Hallå',
 		admin_dashboard: 'Hantera Böcker',
-		user_profile: 'Ditt konto'
+		user_profile: 'Ditt konto',
+		upload_img: 'Ladda Upp Bild'
 	}
 }

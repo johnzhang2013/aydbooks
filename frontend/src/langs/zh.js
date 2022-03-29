@@ -97,6 +97,7 @@ module.exports = {
 		login: '登录',
 		home: '首页',
 		admin_dashboard: '图书管理',
-		user_profile: '个人中心'
+		user_profile: '个人中心',
+		upload_img: '图片上传'
 	}	
 }

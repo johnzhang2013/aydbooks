@@ -1,11 +1,13 @@
 <template>
-	<div class="profile_entry">
-		<div v-if="islogged">
-			<span>{{ this.$t('navbar.greeting') }}, {{ this.uName }}  </span>
+	<div class="profile_entry">		
+		<div v-if="islogged" class="job_entry">
+			<router-link :to="this.linkTo">{{ this.linkText }} <i class="el-icon-data-analysis"></i></router-link>
+		</div>
+		<div v-else class="job_entry">
 			<router-link :to="this.linkTo">{{ this.linkText }}</router-link>
 		</div>
-		<div v-else>
-			<router-link :to="this.linkTo">{{ this.linkText }}</router-link>
+		<div class="navbar_uploadimg">
+			<router-link to="uploadimg">{{ this.$t('navbar.upload_img') }}<i class="el-icon-upload el-icon--righ"></i></router-link>
 		</div>
 	</div>
 </template>
@@ -64,4 +66,17 @@
 </script>
 
 <style>
+	.profile_entry{
+		color:#ffaa00;
+		font-weight: bold;
+	}
+	.navbar_uploadimg {
+		float:right;
+		padding-right:20px;
+		
+	}
+	.job_entry {
+		float:left;
+		padding-right:10px;
+	}
 </style>

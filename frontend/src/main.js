@@ -26,7 +26,7 @@ const router = new VueRouter({
 	routes
 });
 
-const whiteList = ["/login", "/"];
+const whiteList = ["/login", "/uploadimg", "/"];
 router.beforeEach((to, from, next) => {
 	if (whiteList.indexOf(to.path) !== -1) {//no need to auth the vistor for the page in the whitelist
 		next();
