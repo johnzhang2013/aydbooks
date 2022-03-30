@@ -123,6 +123,20 @@ class Book{
     	return BRRModel::where('status',$book_cfg['BeBorrowingOverdued'])->count();
     }
 
+    //All returned in(normal)
+    public function allReturnedNormalCount(){
+    	$book_cfg = config('books.borrowed_status');
+
+    	return BRRModel::where('status',$book_cfg['BeReturnedNormal'])->count();
+    }
+
+    //All returned in(overdued)
+    public function allReturnedOverduedCount(){
+    	$book_cfg = config('books.borrowed_status');
+
+    	return BRRModel::where('status',$book_cfg['BeReturnedOverdued'])->count();
+    }
+
     ######################################################
 	private function _createEntity($entity_model = '', $entity_data = []){
 		DB::beginTransaction();

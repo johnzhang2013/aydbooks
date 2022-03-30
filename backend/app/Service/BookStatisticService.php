@@ -34,6 +34,21 @@ class BookStatisticService{
 		return self::$_instance;
 	}
 
+	//Get all borrowing and returned count
+	public function getAllBorrowingReturnedCount(){
+		$all_borrowing_normal = $this->br_instance->allBorrowingNormalCount();
+		$all_borrowing_overdued = $this->br_instance->allBorrowingOverduedCount();
+		$all_returned_normal = $this->br_instance->allReturnedNormalCount();
+		$all_returned_overdued = $this->br_instance->allReturnedOverduedCount();
+
+		return [
+			'bn_count' => $all_borrowing_normal,
+			'bo_count' => $all_borrowing_overdued,
+			'rn_count' => $all_returned_normal,
+			'ro_count' => $all_returned_overdued
+		];
+	}
+	
 	//Get stock/borrowed ratio of all books
 	public function getStocksAndBorrowings(){
 		//The sum of all books stock 
