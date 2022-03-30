@@ -41,6 +41,8 @@ Route::group(['prefix' => 'backend'], function($router) {
 
         Route::post('author/list', 'AuthorController@list');
 
+        Route::get('dashboard/book_stat', 'DashboardController@getBookStat');
+        Route::get('dashboard/book_tops', 'DashboardController@getTopCount');
 
         /*Route::post('logout', 'AuthController@logout');
         Route::post('refresh', 'AuthController@refresh');
