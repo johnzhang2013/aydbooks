@@ -25,8 +25,28 @@ class DashboardController extends Controller
         $res['msg'] = null;
         $res['data'] = [];
 
-        $res['data']['stocks_and_borrowings'] = $this->bss_instance->getStocksAndBorrowings();
-        $res['data']['bbr_count'] = $this->bss_instance->getAllBorrowingReturnedCount();
+        //The following codes may look STRANGE(do not usage loop) but it have to be so
+        //The reponse data format must fit the frontend echarts usage.
+        //Luckly enough as it is just a small array.
+        $sab_data = $this->bss_instance->getStocksAndBorrowings();
+        $sab_returns = [];
+        $sab_returns[] = [
+            'name' => trans('dashboard.bookstat.all_borrowings'),
+            'value' => $sab_data['all_borrowings']
+        ];
+        $sab_returns[] = [
+            'name' => trans('dashboard.bookstat.all_stocks'),
+            'value' => $sab_data['all_stocks']
+        ];
+        $res['data']['stocks_and_borrowings'] = $sab_returns;
+
+        $bbr_count_data = $this->bss_instance->getAllBorrowingReturnedCount();
+        $bbr_count_returns = [];
+        
+        foreach($bbr_count_data as $_cnt){
+            $bbr_count_returns[] = $_cnt;
+        }
+        $res['data']['bbr_count'] = $bbr_count_returns;
 
         return response()->json($res);
     }

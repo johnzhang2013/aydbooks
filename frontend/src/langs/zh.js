@@ -89,6 +89,27 @@ module.exports = {
 			upload_btn_text1: '将图片拖到此处，或',
 			upload_btn_text2: '点击上传',
 			upload_tip: '只能上传jpg/png文件且不超过{file_size_max}MB，最多{limit_total}张图片!'
+		},
+		
+		dashboard: {
+			bookstat: {
+				barchart_title: '图书借阅及归还情况统计',
+				xaxia_borrowing_normal: '在借(正常)',
+				xaxia_borrowing_overdued: '在借(超期)',
+				xaxia_returned_normal: '已还(正常)',
+				xaxia_returned_overdued: '已还(超期)',
+				yaxia_qty: '数量',
+	
+				piechart_title: '图书借出未还及库存',
+				all_borrowings: '所有在借',
+				all_stocks: '现有库存'
+			},			
+			booktops: {
+				book_borrowed_top_title: '最受欢迎书籍Top{topn}',
+				book_overdued_top_title: '最多超期书籍Top{topn}',
+				bookcate_borrowed_top_title: '最受欢迎书籍类目Top{topn}',
+				bookcate_overdued_top_title: '最多超期书籍类目Top{topn}'
+			}
 		}
 	},
 	

@@ -90,6 +90,28 @@ module.exports = {
 			upload_btn_text1: 'Please drag a file here, or',
 			upload_btn_text2: 'Click here to upload',
 			upload_tip: 'Only a jpg/png file can be accepted, and each image more than {file_size_max}MB,{limit_total} images at max'
+		},
+		
+		dashboard: {
+			bookstat: {
+				barchart_title: 'Book Borrowings and Returns Statistics',
+				xaxia_borrowing_normal: 'Borrowing(Normal)',
+				xaxia_borrowing_overdued: 'Borrowing(Overdued)',
+				xaxia_returned_normal: 'Returned(Normal)',
+				xaxia_returned_overdued: 'Returned(Overdued)',
+				yaxia_qty: 'Quantity',
+				
+				piechart_title: 'Books borrowing and Stock',
+				all_borrowings: 'Borrowing',
+				all_stocks: 'Stock',
+			},
+			
+			booktops: {
+				book_borrowed_top_title: 'Most Popular Books Top {topn}',
+				book_overdued_top_title: 'Most Overdued Books Top {topn}',
+				bookcate_borrowed_top_title: 'Most Popular Book Categories Top {topn}',
+				bookcate_overdued_top_title: 'Most Overdued Books Categories Top {topn}'
+			}
 		}
 	},
 	

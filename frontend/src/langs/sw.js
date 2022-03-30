@@ -89,6 +89,28 @@ module.exports = {
 			upload_btn_text1: 'Dra filer hit, eller',
 			upload_btn_text2: 'Klicka för att ladda upp',
 			upload_tip: 'Endast jpg/png filer kan laddas upp, och bildstorleken bör inte överstiga {file_size_max}MB, Upp till {limit_total} bilder'
+		},
+		
+		dashboard: {
+			bookstat: {
+				barchart_title: 'Bokstatistik',
+				xaxia_borrowing_normal: 'Obetalt(Normalt)',
+				xaxia_borrowing_overdued: 'Obetald(Försenad)',
+				xaxia_returned_normal: 'Betald(Normalt)',
+				xaxia_returned_overdued: 'Betald(försenad)',
+				yaxia_qty: 'Kvantitet',
+				
+				piechart_title: 'Böckerlån och Stock',
+				all_borrowings: 'Utestående',
+				all_stocks: 'Befintliga Lager',
+			},
+			
+			booktops: {
+				book_borrowed_top_title: 'Mest populära böcker Top {topn}',
+				book_overdued_top_title: 'Mest försenade böcker Top {topn}',
+				bookcate_borrowed_top_title: 'Mest populära bokkategorier Top {topn}',
+				bookcate_overdued_top_title: 'Mest försenade böcker Kategorier Top {topn}'
+			}
 		}
 	},
 	
