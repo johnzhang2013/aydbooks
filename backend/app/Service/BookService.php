@@ -69,8 +69,8 @@ class BookService{
 		return $this->br_instance->createBookCategory($bcate_data);
 	}
 
-	public function loadBookCategory($cate_name = ''){
-		return $this->br_instance->loadBookCategory($cate_name);
+	public function loadBookCategoryByName($cate_name = ''){
+		return $this->br_instance->loadBookCategoryByName($cate_name);
 	}
 
 	public function borrowBook($borrow_data = []){

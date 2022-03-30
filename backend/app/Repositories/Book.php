@@ -36,7 +36,11 @@ class Book{
 		return $this->_createEntity('BRRModel', $brr_data);
 	}
 
-    public function loadBookCategory($cate_name = ''){
+	public function loadBookCategory($cid = 0){
+		return BookCategoryModel::find($cid);
+	}
+    
+    public function loadBookCategoryByName($cate_name = ''){
     	return BookCategoryModel::Where('name', $cate_name)->first();
     }
 
@@ -66,6 +70,57 @@ class Book{
     	}else{
     		return BookCategoryModel::where($filters)->paginate($paginate['limit'], ['*'], 'page', $paginate['offset']);
     	}
+    }
+
+    public function listTopBorrowedCountBooks($n = 10){
+    	return BookModel::OrderBy('borrowed_count', 'desc')->orderBy('id', 'asc')->limit($n)->get();
+    }
+
+    public function listTopOverduedCountBooks($n = 10){
+    	return BookModel::OrderBy('overdued_count', 'desc')->orderBy('id', 'asc')->limit($n)->get();
+    }
+    
+    public function listTopBorrowedCountBookCategories($n = 10){
+    	return BookModel::Select('category_id', DB::raw('sum(borrowed_count) as cate_borrowed_count'))
+    					->GroupBy('category_id')
+    					->orderBy('cate_borrowed_count', 'desc')
+    					->limit($n)
+    					->get();
+    }
+
+    public function listTopOverduedCountBookCategories($n = 10){
+    	return BookModel::Select('category_id', DB::raw('sum(overdued_count) as cate_overdued_count'))
+    					->GroupBy('category_id')
+    					->orderBy('cate_overdued_count', 'desc')
+    					->limit($n)
+    					->get();
+    }
+
+
+    //Calc the stock sum of all books
+    public function allStockSum(){
+    	return BookModel::allStockSum();
+    }
+
+    //Calc all borrowing out(not returned)
+    public function allBorrowingCount(){
+    	$all_borrowing_normal_cnt = $this->allBorrowingNormalCount();
+    	$all_borrowing_overdued_cnt = $this->allBorrowingOverduedCount();
+
+    	return $all_borrowing_normal_cnt + $all_borrowing_overdued_cnt;
+    }
+
+    //All borrowing out(normal)
+    public function allBorrowingNormalCount(){
+    	$book_cfg = config('books.borrowed_status');
+
+    	return BRRModel::where('status',$book_cfg['BeBorrowingNormal'])->count();
+    }
+    //All borrowing out(overdued)
+    public function allBorrowingOverduedCount(){
+    	$book_cfg = config('books.borrowed_status');
+
+    	return BRRModel::where('status',$book_cfg['BeBorrowingOverdued'])->count();
     }
 
     ######################################################

@@ -46,4 +46,9 @@ class Book extends Model
 
         return $this->belonsToMany(BorrowReturnRecord::class)->where('status', $brr_cfg['BeReturnedOverdued']);
     }
+
+    //Calc the sum of all books stock
+    public static function allStockSum(){
+        return self::sum('stock');
+    }
 }
