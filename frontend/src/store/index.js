@@ -60,8 +60,13 @@ const store = new Vuex.Store({
 			localStorage.removeItem('u_rememberme');
 		},
 		
-		logout (state, u_name) {
+		logOut (state, u_name) {
 			state.u_name = null;
+			state.u_email = null;
+			state.u_pwd = null;
+			state.u_gt = null;
+			state.u_rm = null;
+			
 			localStorage.removeItem('u_name');
 			localStorage.removeItem('u_token');
 		}
@@ -77,8 +82,8 @@ const store = new Vuex.Store({
 		},
 		
 		//clear something related with login credentials
-		beforeLogoutAction(){
-			context.commit('logout');
+		beforeLogoutAction(context){
+			context.commit('logOut');
 		},
 		
 		//restore something related with login credentials

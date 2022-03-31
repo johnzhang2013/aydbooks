@@ -17,6 +17,6 @@ return [
     'throttle' => '登录尝试太多,请过:sencods秒后再试.',
 
     'wrong_auth_type' => '请选择你的登录角色.',
-    'wrong_credentials' => '你们的登录凭证信息无效.',
+    'wrong_credentials' => '你的登录凭证信息无效.',
 
 ];

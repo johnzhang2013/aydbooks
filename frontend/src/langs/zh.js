@@ -139,6 +139,7 @@ module.exports = {
 	navbar: {
 		greeting: '您好',
 		login: '登录',
+		logout: '退出',
 		home: '首页',
 		admin_dashboard: '图书管理',
 		user_profile: '个人中心',

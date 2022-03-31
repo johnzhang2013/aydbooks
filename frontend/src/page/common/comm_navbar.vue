@@ -1,14 +1,14 @@
 <template>
 	<div class="profile_entry">		
 		<div v-if="islogged" class="job_entry">
-			<router-link :to="this.linkTo"><i class="el-icon-data-analysis"></i> {{ this.linkText }} |</router-link>
-			<router-link to="/logout"> Log out </router-link>
+			<router-link :to="this.linkTo"><i class="el-icon-s-tools"></i> {{ this.linkText }}</router-link> |
+			<span class="logout_span" @click="doLogout"> {{ this.logOut }}</span> |
 		</div>
 		<div v-else class="job_entry">
-			<router-link :to="this.linkTo">{{ this.linkText }}</router-link>
+			<router-link :to="this.linkTo">{{ this.linkText }}</router-link> |
 		</div>
 		<div class="navbar_uploadimg">
-			<router-link to="uploadimg">{{ this.$t('navbar.upload_img') }}<i class="el-icon-upload el-icon--righ"></i></router-link>
+			<router-link to="/uploadimg">{{ this.$t('navbar.upload_img') }}<i class="el-icon-upload el-icon--righ"></i></router-link> |
 		</div>
 	</div>
 </template>
@@ -23,7 +23,8 @@
 				isAdmin: false,
 				uName: null,
 				linkTo: null,
-				linkText: null
+				linkText: null,
+				logOut: this.$t('navbar.logout')
 			}
 		},
 		
@@ -61,6 +62,18 @@
 					this.linkTo = '/';
 					this.linkText = this.$t('navbar.home');
 				}
+			},
+			
+			doLogout() {
+				this.$store.dispatch('beforeLogoutAction').then(() => {
+					if(this.workfor == 'home'){
+						this.linkTo = 'login';
+						this.linkText = this.$t('navbar.login');
+						this.islogged = false;
+					}else{
+						this.$router.replace('/');
+					}
+				});
 			}
 		}		
 	}
@@ -73,11 +86,14 @@
 	}
 	.navbar_uploadimg {
 		float:right;
-		padding-right:20px;
-		
+		padding:5px 20px 0 0;
 	}
 	.job_entry {
 		float:left;
-		padding-right:10px;
+		padding:5px 10px 0 0;
+	}
+	.logout_span {
+		margin-bottom:20px;
+		cursor:pointer;
 	}
 </style>
