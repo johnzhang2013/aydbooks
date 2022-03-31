@@ -135,6 +135,21 @@ module.exports = {
 				bookcate_borrowed_top_title: 'Most Popular Book Categories Top {topn}',
 				bookcate_overdued_top_title: 'Most Overdued Books Categories Top {topn}'
 			}
+		},
+		
+		profile: {
+			tab_profile: 'Account Information',
+			tab_brr: 'Borrow Return Records',
+			tab_pwd: 'Password Update',
+			tabs_profile: {
+				init_error: 'Failure to get member information.',
+				title: 'Profile',
+				name: 'Username',
+				email: 'E-mail',
+				lendable_qty: 'Borrowing credits(book)',
+				is_active: 'Allowed to borrow',
+				brr_count: 'Total borrows(Not return/All)'
+			}
 		}
 	},
 	

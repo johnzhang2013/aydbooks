@@ -23,7 +23,7 @@ Route::group(['prefix' => 'frontend'], function($router) {
     Route::group(['middleware' => ['auth:user']], function($router) {
         //Route::post('logout', 'AuthController@logout');
         //Route::post('refresh', 'AuthController@refresh');        
-        //Route::get('my/profile', 'AuthController@profile');
+        Route::get('user/profile', 'MemberController@profile');
 
         Route::post('book/borrowit', 'BookController@borrow');
 

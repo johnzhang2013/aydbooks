@@ -133,6 +133,21 @@ module.exports = {
 				bookcate_borrowed_top_title: '最受欢迎书籍类目Top{topn}',
 				bookcate_overdued_top_title: '最多超期书籍类目Top{topn}'
 			}
+		},
+
+		profile: {
+			tab_profile: '个人信息',
+			tab_brr: '借阅记录',
+			tab_pwd: '密码更新',
+			tabs_profile: {
+				init_error: '用户信息拉取失败',
+				title: '资料概览',
+				name: '用户名',
+				email: '登录邮箱',
+				lendable_qty: '借书额度(本)',
+				is_active: '是否允许借书',
+				brr_count: '已借阅次数(未还/所有)'
+			}
 		}
 	},
 	

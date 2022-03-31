@@ -133,6 +133,21 @@ module.exports = {
 				bookcate_borrowed_top_title: 'Mest populära bokkategorier Top {topn}',
 				bookcate_overdued_top_title: 'Mest försenade böcker Kategorier Top {topn}'
 			}
+		},
+		
+		profile: {
+			tab_profile: 'Personlig information',
+			tab_brr: 'Låna skivor',
+			tab_pwd: 'Lösenordsuppdatering',
+			tabs_profile: {
+				init_error: 'Användarinformation pull misslyckades',
+				title: 'Dataöversikt',
+				name: 'Användarnamn',
+				email: 'Din brevlåda',
+				lendable_qty: 'Lånebelopp (bok)',
+				is_active: 'Är det tillåtet att låna böcker',
+				brr_count: 'Lånade tider(enastående/alla)'
+			}
 		}
 	},
 	

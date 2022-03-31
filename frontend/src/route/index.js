@@ -5,7 +5,7 @@ const ImageUpload = () => import("../page/common/upload_image.vue");
 
 //The user private page
 //const MyBorrowed = () => import("../page/user/myborrowed.vue")
-//const Profile = () => import("../page/user/profile.vue")
+const Profile = () => import("../page/user/profile.vue")
 
 //The admin panel page
 const Dashboard = () => import("../page/admin/dashboard.vue")
@@ -20,7 +20,7 @@ export default [
 	{ path: '/uploadimg', name: 'uploadimg', component: ImageUpload },
 	
 	//{ path: '/myborrowed', name: 'myborrowed', component: MyBorrowed },
-	//{ path: '/profile', name: 'user_profile', component: Profile },
+	{ path: '/profile', name: 'user_profile', component: Profile },
 	
 	{ path: '/dashboard', name: 'dashboard', component: Dashboard},
 	{ path: '/books', name: 'books', component: Books},
