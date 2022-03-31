@@ -4,6 +4,7 @@ namespace App\Repositories;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\QueryException;
 
+use App\Models\User as MemberModel;
 use App\Models\Book as BookModel;
 use App\Models\BookCategory as BookCategoryModel;
 use App\Models\BorrowReturnRecord as BRRModel;
@@ -137,6 +138,38 @@ class Book{
     	return BRRModel::where('status',$book_cfg['BeReturnedOverdued'])->count();
     }
 
+    //borrow a book
+    public function borrow(MemberModel $user = null, BookModel $book = null){
+    	$book_cfg = config('books');
+
+    	$now_timestamp = time();
+    	$max_borrowable_days = $book_cfg['borrowable_days_max'];
+    	
+    	$bbr_data = [
+    		'user_id' => $user->id,
+    		'book_id' => $book->id,
+    		'book_isbn' => $book->isbn,
+    		'book_title' => $book->title,
+    		'status' => $book_cfg['borrowed_status']['BeBorrowingNormal'],
+    		'deadline_datetime' => date('Y-m-d H:i:s', $now_timestamp + 24 * 3600 * $max_borrowable_days),
+    		'borrowed_datetime' => date('Y-m-d H:i:s', $now_timestamp)
+    	];
+
+    	return $this->createBorrowReturnRecord($bbr_data);
+    }
+
+    public function updateBookAferBorrowed(BookModel $book = null){
+    	$book->stock = $book->stock - 1;
+    	$book->borrowed_count = $book->borrowed_count + 1;
+
+    	$book->save();
+    }
+
+    public function updateBookAfterReturned(BookModel $book = null){
+    	$book->stock = $book->stock + 1;
+
+    	$book->save();
+    }
     ######################################################
 	private function _createEntity($entity_model = '', $entity_data = []){
 		DB::beginTransaction();

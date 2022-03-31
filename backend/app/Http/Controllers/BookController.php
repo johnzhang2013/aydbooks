@@ -26,6 +26,13 @@ class BookController extends CommonController
         return response()->json($book_options);
     }
 
+    public function borrow(Request $request){
+        $isbn = $request->isbn;
+
+        $borrow_res = $this->bs_instance->borrowBook($isbn);
+        return response()->json($borrow_res);
+    }
+
     public function list(Request $request){
         $conditions = $this->generateQueryConditions($request->all());
         $paginate = $this->generateQueryPaginate($request->all());

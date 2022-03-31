@@ -64,7 +64,7 @@
 						<el-table-column :label="lang_texts.columns_label.actions" fixed="right" width="200px">
 							<template slot-scope="scope">
 								<el-button type="success" plain size="small" @click="viewBookDetail(scope.row)">{{ lang_texts.columns_label.btn_view }}</el-button>
-								<el-button type="primary" size="small" @click="tryBorrowIt(scope.row.isbn)">{{ lang_texts.columns_label.btn_borrow }}</el-button>
+								<el-button type="primary" size="small" @click="borrowIt(scope.row.isbn)">{{ lang_texts.columns_label.btn_borrow }}</el-button>
 							</template>
 						</el-table-column>
 					</el-table>
@@ -224,9 +224,66 @@
 				this.bookdetail_form.onshelf_at = book.onshelf_datetime;
 			},
 			
-			tryBorrowIt(isbn) {
-				//step1 - check login status
-				console.log(isbn);
+			borrowIt(isbn) {
+				//step1 - It requires a normal user to borrow it
+				let isLogged = this.checkAppLoginAsUser();
+				if(!isLogged){
+					this.$message({
+						message: this.$t('messages.borrow.not_logged'),
+						type: 'warning',
+						duration: 2000,//2 seconds
+						showClose: true
+					});
+					return;
+				}
+				
+				this.doBorrowBook(isbn);
+			},
+			
+			checkAppLoginAsUser() {
+				let u_token = window.localStorage.getItem('u_token');
+				if(u_token) {
+					let u_gt = window.localStorage.getItem('u_gt');
+					return (u_gt == 'user') ? true : false;
+				}else{
+					return false;
+				}
+			},
+			
+			doBorrowBook(isbn) {
+				let can_borrow = false;
+				
+				this.$httpapi.post(
+					'api/frontend/book/borrowit',
+					{isbn: isbn},
+					(res)=>{
+						if(res.status == true && res.code == 200){
+							this.$message({
+								message: '[' + res.code +'] ' + res.msg,
+								type:'success',
+								duration: 2000,
+								showClose: true
+							});
+						}else{
+							this.$message({
+								message: '[' + res.code +'] ' + res.msg,
+								type: 'error',
+								duration: 2000,//2 seconds
+								showClose: true
+							});
+						}
+					},
+					(error) => {
+						this.$message({
+								message: this.$t(error),
+								type: 'error',
+								duration: 2000,//2 seconds
+								showClose: true
+						});
+					}
+				);
+				
+				return can_borrow;
 			},
 			
 			doBookSearch(){

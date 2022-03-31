@@ -12,6 +12,10 @@ module.exports = {
 		
 		auth: {
 			
+		},
+		
+		borrow: {
+			not_logged: '你必须以用户身份登录系统才能借书!'
 		}
 	},
 	

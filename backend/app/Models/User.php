@@ -58,4 +58,9 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+    //
+    public function borrow_return_records(){
+        return $this->hasMany(BorrowReturnRecord::class, 'user_id');
+    }
 }

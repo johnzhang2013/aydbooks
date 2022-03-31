@@ -12,6 +12,10 @@ module.exports = {
 		
 		auth: {
 			
+		},
+		
+		borrow: {
+			not_logged: 'You need to logged as a user to borrow it!'
 		}
 	},
 	

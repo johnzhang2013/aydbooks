@@ -1,7 +1,8 @@
 <template>
 	<div class="profile_entry">		
 		<div v-if="islogged" class="job_entry">
-			<router-link :to="this.linkTo">{{ this.linkText }} <i class="el-icon-data-analysis"></i></router-link>
+			<router-link :to="this.linkTo"><i class="el-icon-data-analysis"></i> {{ this.linkText }} |</router-link>
+			<router-link to="/logout"> Log out </router-link>
 		</div>
 		<div v-else class="job_entry">
 			<router-link :to="this.linkTo">{{ this.linkText }}</router-link>

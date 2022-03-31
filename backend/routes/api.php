@@ -19,15 +19,17 @@ Route::group(['prefix' => 'frontend'], function($router) {
     Route::post('book/list', 'BookController@list');    
     Route::post('uploadimg', 'UploadController@uploadImage');
 
-   /* //Api Routes for auth
+    //Api Routes for auth
     Route::group(['middleware' => ['auth:user']], function($router) {
-        Route::post('logout', 'AuthController@logout');
-        Route::post('refresh', 'AuthController@refresh');        
-        Route::get('profile', 'AuthController@profile');
+        //Route::post('logout', 'AuthController@logout');
+        //Route::post('refresh', 'AuthController@refresh');        
+        //Route::get('my/profile', 'AuthController@profile');
 
-        Route::get('book/borrowed', 'BookController@borrowed');
-        Route::get('book/returned', 'BookController@returned');
-    });*/
+        Route::post('book/borrowit', 'BookController@borrow');
+
+        //Route::get('my/borrowed', 'BookController@borrowed');
+    });
+    
 });
 
 //Api routes for backend requests
@@ -38,6 +40,7 @@ Route::group(['prefix' => 'backend'], function($router) {
         Route::get('book/basics', 'BookController@basics');
         Route::post('book/list', 'BookController@list');
         Route::post('bookcate/list', 'BookCategoryController@list');
+
 
         Route::post('author/list', 'AuthorController@list');
 

@@ -83,5 +83,14 @@ class MemberService{
         //more logic here
         return MemberRepository::getInstance()->list($filters, $paginate);
     }
+    
+    public function updateMemberAfterBorrowed($member = null){
+        $this->mr_instance->updateMemberAfterBorrowed($member);
+    }
+
+    public function updateMemberAfterReturned($member = null){
+        $this->mr_instance->updateMemberAfterReturned($member);
+    }
+    
     ########Business Methods For Controllers############
 }

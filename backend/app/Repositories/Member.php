@@ -45,6 +45,16 @@ class Member{
     	}
     }
 
+    public function updateMemberAfterBorrowed(MemberModel $member = null){
+    	$member->lendable_qty = $member->lendable_qty - 1;
+    	$member->save();
+    }
+
+    public function updateMemberAfterReturned(MemberModel $member = null){
+    	$member->lendable_qty = $member->lendable_qty + 1;
+    	$member->save();
+    }
+
     ######################################################
 	private function _createEntity($entity_model = '', $entity_data = []){
 		DB::beginTransaction();
