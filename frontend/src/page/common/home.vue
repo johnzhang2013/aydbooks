@@ -202,7 +202,7 @@
 		
 		methods: {
 			lowStockAlert({row, column, rowIndex, columnIndex}) {
-				if(columnIndex != 5) return;
+				if(columnIndex != 4) return;
 
 				if (row.stock <= 5) {
 					return 'lsa-lose';
