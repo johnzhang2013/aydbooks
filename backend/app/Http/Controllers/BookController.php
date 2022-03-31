@@ -5,8 +5,12 @@ use App\Service\BookService;
 use Illuminate\Http\Request;
 //use Illuminate\Support\Facades\DB;
 
+use App\Traits\BookCommonTrait;
+
 class BookController extends CommonController
 {
+    use BookCommonTrait;
+    
     private $bs_instance = null;
 
     /**
@@ -134,22 +138,5 @@ class BookController extends CommonController
         }
 
         return $conditions;
-    }
-
-
-    private function buildBookOptions($basic_options = []){
-        $sys_book_options = [];
-        $sys_book_options['authors'] = [];
-        $sys_book_options['bookcategories'] = [];
-
-        foreach($basic_options['sys_authors'] as $_author){
-            $sys_book_options['authors'][$_author['value']] = $_author['label'];
-        }
-
-        foreach($basic_options['sys_bookcategories'] as $_category){
-            $sys_book_options['bookcategories'][$_category['value']] = $_category['label'];
-        }
-
-        return $sys_book_options;
     }
 }

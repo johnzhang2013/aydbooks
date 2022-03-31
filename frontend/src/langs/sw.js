@@ -147,6 +147,19 @@ module.exports = {
 				lendable_qty: 'Lånebelopp (bok)',
 				is_active: 'Är det tillåtet att låna böcker',
 				brr_count: 'Lånade tider(enastående/alla)'
+			},
+			tabs_brr: {
+				empty_result: 'Du har inga låneuppgifter ännu',
+				column: {
+					record_no: 'Serienummer',
+					isbn:'ISBN',
+					title: 'Boktitel',
+					status: 'Lånestatus',
+					borrowed_datetime: 'Lånedatum',
+					deadline_datetime: 'Returperiod',
+					returned_datetime: 'Deadline datum',
+					overdued_days: 'Försenade dagar'
+				}
 			}
 		}
 	},

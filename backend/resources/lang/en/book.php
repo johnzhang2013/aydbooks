@@ -1,6 +1,13 @@
 <?php
 
 return [
+	'common' => [
+		'brr_status_0' => 'Normal returned',
+		'brr_status_1' => 'Overdued returned',
+		'brr_status_2' => 'Normal borrowing',
+		'brr_status_3' => 'Overdued borrowing'
+	],
+
 	'borrow_action' => [
 		'not_logged' => 'You need to logged as a user to borrow it!',
 		'no_leadable' => 'Your borrowable credit is insufficient.',

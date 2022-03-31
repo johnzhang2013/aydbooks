@@ -84,6 +84,10 @@ class MemberService{
         return MemberRepository::getInstance()->list($filters, $paginate);
     }
     
+    public function listBorrowReturnRecords($filters = [], $paginate = []){
+        return MemberRepository::getInstance()->listBorrowReturnRecords($filters, $paginate);
+    }
+
     public function updateMemberAfterBorrowed($member = null){
         $this->mr_instance->updateMemberAfterBorrowed($member);
     }

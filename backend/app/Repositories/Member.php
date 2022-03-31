@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Database\QueryException;
 
 use App\Models\User as MemberModel;
-
+use App\Models\BorrowReturnRecord as BRRModel;
 class Member{
 	private static $_instance;
 	private function __clone(){}
@@ -42,6 +42,14 @@ class Member{
     		return MemberModel::paginate($paginate['limit'], ['*'], 'page', $paginate['offset']);
     	}else{
     		return MemberModel::where($filters)->paginate($paginate['limit'], ['*'], 'page', $paginate['offset']);
+    	}
+    }
+
+    public function listBorrowReturnRecords($filters = [], $paginate = []){
+    	if(empty($filters)){
+    		return BRRModel::paginate($paginate['limit'], ['*'], 'page', $paginate['offset']);
+    	}else{
+    		return BRRModel::where($filters)->paginate($paginate['limit'], ['*'], 'page', $paginate['offset']);
     	}
     }
 

@@ -149,6 +149,19 @@ module.exports = {
 				lendable_qty: 'Borrowing credits(book)',
 				is_active: 'Allowed to borrow',
 				brr_count: 'Total borrows(Not return/All)'
+			},
+			tabs_brr: {
+				empty_result: 'You have no any borrow records',
+				column: {
+					record_no: 'Recordno',
+					isbn:'ISBN',
+					title: 'Title',
+					status: 'Status',
+					borrowed_datetime: 'Borrowed Date',
+					deadline_datetime: 'Deadline Date',
+					returned_datetime: 'Returned Date',
+					overdued_days: 'Overdued Days'
+				}
 			}
 		}
 	},

@@ -1,6 +1,13 @@
 <?php
 
 return [
+	'common' => [
+		'brr_status_0' => 'Normala tillbaka',
+		'brr_status_1' => 'Förfallna tillbaka',
+		'brr_status_2' => 'Normala under lån',
+		'brr_status_3' => 'Förfallna under lån'
+	],
+
 	'borrow_action' => [
 		'not_logged' => 'Du måste logga in som användare för att låna den!',
 		'no_leadable' => 'Din lånbara kredit är otillräcklig.',

@@ -21,13 +21,9 @@ Route::group(['prefix' => 'frontend'], function($router) {
 
     //Api Routes for auth
     Route::group(['middleware' => ['auth:user']], function($router) {
-        //Route::post('logout', 'AuthController@logout');
-        //Route::post('refresh', 'AuthController@refresh');        
-        Route::get('user/profile', 'MemberController@profile');
-
         Route::post('book/borrowit', 'BookController@borrow');
-
-        //Route::get('my/borrowed', 'BookController@borrowed');
+        Route::get('user/profile', 'MemberController@profile');
+        Route::post('user/brr', 'MemberController@borrowReturnRecords');        
     });
     
 });

@@ -147,6 +147,19 @@ module.exports = {
 				lendable_qty: '借书额度(本)',
 				is_active: '是否允许借书',
 				brr_count: '已借阅次数(未还/所有)'
+			},
+			tabs_brr: {
+				empty_result: '目前你还未有任何借阅记录',
+				column: {
+					record_no: '系统编号',
+					isbn:'ISBN',
+					title: '书名',
+					status: '借阅状态',
+					borrowed_datetime: '借书日期',
+					deadline_datetime: '还书期限',
+					returned_datetime: '还书日期',
+					overdued_days: '超期天数'
+				}
 			}
 		}
 	},

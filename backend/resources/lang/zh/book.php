@@ -1,6 +1,13 @@
 <?php
 
 return [
+	'common' => [
+		'brr_status_0' => '正常归还',
+		'brr_status_1' => '逾期归还',
+		'brr_status_2' => '正常在借',
+		'brr_status_3' => '逾期在借'
+	],
+
 	'borrow_action' => [
 		'not_logged' => '你必须以用户身份登录系统才能借书!',
 		'no_leadable' => '很遗憾, 你目前可借书额度已用完！',
