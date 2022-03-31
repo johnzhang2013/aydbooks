@@ -51,6 +51,24 @@ module.exports = {
 	},
 	
 	pages: {
+		common: {
+			entity: {
+				book: {
+					return: 'Return',
+					ele_title: 'Book Information',
+					isbn: 'ISBN',
+					title: 'Title',
+					intro: 'Introduction',
+					author: 'Author',
+					category: 'Category',
+					stock: 'Stock',
+					onshelf_at: 'Onsheft Datetime',
+					borrowed_count: 'Borrowing Count',
+					overdued_count: 'Overdued Count',
+				}
+			}
+		},
+		
 		home:{
 			title: 'Welcome to AYD Books system',
 			filter: {
@@ -69,9 +87,10 @@ module.exports = {
 					category: 'Category',
 					stock: 'Stock',
 					borrowed: 'Borrow Count',
-					onshelfat: 'Onshelf At',
+					onshelf_at: 'Onshelf At',
 					actions: 'Actions',
-					btn_borrow: 'Borrow It'
+					btn_borrow: 'Borrow It',
+					btn_view: 'Detail'
 				}
 			}
 		},

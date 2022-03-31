@@ -50,6 +50,24 @@ module.exports = {
 	},
 	
 	pages: {
+		common: {
+			entity: {
+				book: {
+					return: '返回',
+					ele_title: '图书信息',
+					isbn: 'ISBN',
+					title: '书名',
+					intro: '简介',
+					author: '作者',
+					category: '类目',
+					stock: '库存',
+					onshelf_at: '上架日期',
+					borrowed_count: '借阅次数',
+					overdued_count: '超期次数',
+				}
+			}
+		},
+		
 		home:{
 			title: '欢迎来到AYD图书系统',
 			filter: {
@@ -68,9 +86,10 @@ module.exports = {
 					category: '类目',
 					stock: '库存',
 					borrowed: '借阅量',
-					onshelfat: '上架日期',
+					onshelf_at: '上架日期',
 					actions: '操作',
-					btn_borrow: '借书'
+					btn_borrow: '借书',
+					btn_view: '查看'
 				}
 			}
 		},

@@ -54,16 +54,7 @@
 				</div>
 				<div else>
 					<el-table :data="list_data.list" style="width: 100%" :cell-class-name="lowStockAlert" stripe border>
-						<el-table-column type="expand">
-							<template slot-scope="props">
-								<el-form label-position="left" inline class="book-intro-expand">
-									<el-form-item>
-										<span>{{ props.row.brief_intro }}</span>
-									</el-form-item>
-								</el-form>
-							</template>
-						</el-table-column>
-						<el-table-column prop="isbn" :label="lang_texts.columns_label.isbn" width="130px"></el-table-column>
+						<el-table-column prop="isbn" fixed :label="lang_texts.columns_label.isbn" width="130px"></el-table-column>
 						<el-table-column prop="title" :label="lang_texts.columns_label.title" width="500px"></el-table-column>
 						<el-table-column prop="author" :label="lang_texts.columns_label.author" width="400px"></el-table-column>
 						<el-table-column prop="category" :label="lang_texts.columns_label.category" width="150px"></el-table-column>
@@ -72,7 +63,8 @@
 						<el-table-column prop="onshelf_datetime" :label="lang_texts.columns_label.onshelfat" width="200px"></el-table-column>
 						<el-table-column :label="lang_texts.columns_label.actions" fixed="right" width="200px">
 							<template slot-scope="scope">
-								<el-button type="text" size="small">{{ lang_texts.columns_label.btn_borrow }}</el-button>
+								<el-button type="success" plain size="small" @click="viewBookDetail(scope.row)">{{ lang_texts.columns_label.btn_view }}</el-button>
+								<el-button type="primary" size="small" @click="tryBorrowIt(scope.row.isbn)">{{ lang_texts.columns_label.btn_borrow }}</el-button>
 							</template>
 						</el-table-column>
 					</el-table>
@@ -90,7 +82,38 @@
 				</div>
 			</div>
 		</div>
-	</div>	
+		<el-dialog :title="lang_texts.book_detail.description_title" :visible.sync="bookdetail_form.visible">
+			<el-descriptions class="margin-top" :title="bookdetail_form.title" column="2" size="medium" border labelClassName="bookdetail_label">
+			    <el-descriptions-item>
+					<template slot="label"><i class="el-icon-mobile-phone"></i>{{lang_texts.book_detail.isbn}}</template>{{bookdetail_form.isbn}}
+			    </el-descriptions-item>
+			    <el-descriptions-item>
+					<template slot="label"><i class="el-icon-user"></i>{{lang_texts.book_detail.author}}</template>{{bookdetail_form.author}}
+			    </el-descriptions-item>
+			    <el-descriptions-item>
+					<template slot="label"><i class="el-icon-location-outline"></i>{{lang_texts.book_detail.category}}</template>{{bookdetail_form.category}}
+			    </el-descriptions-item>
+				<el-descriptions-item>
+					<template slot="label"><i class="el-icon-location-outline"></i>{{lang_texts.book_detail.onshelf_at}}</template>{{bookdetail_form.onshelf_at}}
+				</el-descriptions-item>
+			    <el-descriptions-item>
+					<template slot="label"><i class="el-icon-tickets"></i>{{lang_texts.book_detail.stock}}</template>
+					<el-tag size="small">{{bookdetail_form.stock}}</el-tag>
+			    </el-descriptions-item>
+				<el-descriptions-item>
+					<template slot="label"><i class="el-icon-tickets"></i>{{lang_texts.book_detail.borrowed_count}}</template>
+					<el-tag size="small">{{bookdetail_form.borrowed_count}}</el-tag>
+				</el-descriptions-item>
+				
+			    <el-descriptions-item>
+					<template slot="label"><i class="el-icon-office-building"></i>{{lang_texts.book_detail.intro}}</template>{{bookdetail_form.brief_intro}}
+			    </el-descriptions-item>
+			</el-descriptions>
+			<div slot="footer" class="dialog-footer">
+				<el-button  type="primary" @click="bookdetail_form.visible = false">{{lang_texts.book_detail.return}}</el-button>
+			</div>
+		</el-dialog>
+	</div>
 </template>
 
 <script>
@@ -102,6 +125,17 @@
 		
 		data(){
 			return{
+				bookdetail_form: {
+					visible: false,
+					isbn: '',
+					title: '',
+					brief_intro: '',
+					stock: 0,
+					category: '',
+					author: '',
+					onshelf_at: '',
+					borrowed_count: 0
+				},
 				page_name: 'home',
 				loading: false,
 				lang_texts:{
@@ -113,9 +147,10 @@
 						category: this.$t('pages.home.list.column.category'),
 						stock: this.$t('pages.home.list.column.stock'),
 						borrowed_count: this.$t('pages.home.list.column.borrowed'),
-						onshelfat: this.$t('pages.home.list.column.onshelfat'),
+						onshelfat: this.$t('pages.home.list.column.onshelf_at'),
 						actions: this.$t('pages.home.list.column.actions'),
-						btn_borrow: this.$t('pages.home.list.column.btn_borrow')
+						btn_borrow: this.$t('pages.home.list.column.btn_borrow'),
+						btn_view: this.$t('pages.home.list.column.btn_view')
 					},
 					placeholders: {
 						isbn: this.$t('placeholder.home.filter.isbn'),
@@ -124,6 +159,18 @@
 						category: this.$t('placeholder.home.filter.category'),
 						date_start: this.$t('placeholder.home.filter.date_start'),
 						date_end: this.$t('placeholder.home.filter.date_end'),
+					},
+					book_detail: {
+						description_title: this.$t('pages.common.entity.book.ele_title'),
+						isbn: this.$t('pages.common.entity.book.isbn'),
+						title: this.$t('pages.common.entity.book.title'),
+						intro: this.$t('pages.common.entity.book.intro'),
+						author: this.$t('pages.common.entity.book.author'),
+						category: this.$t('pages.common.entity.book.category'),
+						stock: this.$t('pages.common.entity.book.stock'),
+						borrowed_count: this.$t('pages.common.entity.book.borrowed_count'),
+						onshelf_at: this.$t('pages.common.entity.book.onshelf_at'),
+						return: this.$t('pages.common.entity.book.return'),
 					}
 				},
 				
@@ -163,6 +210,23 @@
 					return 'lsa-warning';
 				}
 				return '';
+			},
+			
+			viewBookDetail(book) {
+				this.bookdetail_form.visible = true;
+				this.bookdetail_form.isbn = book.isbn;
+				this.bookdetail_form.title = book.title;
+				this.bookdetail_form.brief_intro = book.brief_intro;
+				this.bookdetail_form.category = book.category;
+				this.bookdetail_form.author = book.author;
+				this.bookdetail_form.stock = book.stock;
+				this.bookdetail_form.borrowed_count = book.borrowed_count;
+				this.bookdetail_form.onshelf_at = book.onshelf_datetime;
+			},
+			
+			tryBorrowIt(isbn) {
+				//step1 - check login status
+				console.log(isbn);
 			},
 			
 			doBookSearch(){
@@ -226,9 +290,6 @@
 </script>
 
 <style>
-	.books_page{
-		
-	}
 	.books_container{
 		padding: 20px;
 		box-sizing: border-box;
@@ -266,9 +327,7 @@
 	.books_paginater{
 		margin:20px 0 10px 600px;
 	}
-	.book-intro-expand span{
-		margin:0 0 0 100px;
-	}
+
 	.lsa-lose {
 		background-color: #ffaa7f!important;
 	}
@@ -292,5 +351,9 @@
 	.login_languge_switcher .el-dropdown-link {
 		cursor: pointer;
 		color: #000000!important;
+	}
+	.bookdetail_label {
+		width:20%;
+		background-color: #0056B3;
 	}
 </style>

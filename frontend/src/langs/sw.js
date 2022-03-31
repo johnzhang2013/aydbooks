@@ -50,6 +50,23 @@ module.exports = {
 	},
 	
 	pages: {
+		common: {
+			entity: {
+				book: {
+					return: 'Lämna Tillbaka',
+					ele_title: 'Bokinformation',
+					isbn: 'ISBN',
+					title: 'Boktitel',
+					intro: 'Introduktion',
+					author: 'Författare',
+					category: 'Kategori',
+					stock: 'Lagermängd',
+					onshelf_at: 'Lanseringsdag',
+					borrowed_count: 'Läsvolym',
+					overdued_count: 'Försenad statistik',
+				}
+			}
+		},
 		home:{
 			title: 'Välkommen till AYD Bok Systemet',
 			filter: {
@@ -68,9 +85,10 @@ module.exports = {
 					category: 'Kategori',
 					stock: 'Stock',
 					borrowed: 'Låna räkna',
-					onshelfat: 'Lanseringsdag',
+					onshelf_at: 'Lanseringsdag',
 					actions: 'Fungera',
-					btn_borrow: 'Låna böcker'
+					btn_borrow: 'Låna den',
+					btn_view: 'Detaljer'
 				}
 			}
 		},
