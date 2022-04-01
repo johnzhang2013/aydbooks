@@ -113,6 +113,14 @@ module.exports = {
 			upload_tip: 'Endast jpg/png filer kan laddas upp, och bildstorleken bör inte överstiga {file_size_max}MB, Upp till {limit_total} bilder'
 		},
 		
+		pdfmerge: {
+			btn_merge: 'Generera',
+			number_input_tip: 'Du matar in siffror du vill ha, och vi slår samman det som en streckkod till en PDF-fil.',
+			number_length: 'Ange minst {number_length} nummer.',
+			success_generate: 'Den nya PDF-filen har skapats framgångsrikt!',
+			download_it: 'Ladda ner'
+		},
+		
 		dashboard: {
 			bookstat: {
 				barchart_title: 'Bokstatistik',
@@ -171,6 +179,7 @@ module.exports = {
 		greeting: 'Hallå',
 		admin_dashboard: 'Hantera Böcker',
 		user_profile: 'Ditt konto',
-		upload_img: 'Ladda Upp Bild'
+		upload_img: 'Ladda Upp Bild',
+		pdf_merge: 'PDF Fungerar'
 	}
 }

@@ -7,6 +7,9 @@
 		<div v-else class="job_entry">
 			<router-link :to="this.linkTo">{{ this.linkText }}</router-link> |
 		</div>
+		<div class="navbar_pdfmerge">
+			<router-link to="/pdfmerge">{{ this.$t('navbar.pdf_merge') }}</router-link>
+		</div>
 		<div class="navbar_uploadimg">
 			<router-link to="/uploadimg">{{ this.$t('navbar.upload_img') }}<i class="el-icon-upload el-icon--righ"></i></router-link> |
 		</div>
@@ -117,6 +120,10 @@
 		font-weight: bold;
 	}
 	.navbar_uploadimg {
+		float:right;
+		padding:5px 20px 0 0;
+	}
+	.navbar_pdfmerge {
 		float:right;
 		padding:5px 20px 0 0;
 	}

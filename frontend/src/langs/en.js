@@ -115,6 +115,14 @@ module.exports = {
 			upload_tip: 'Only a jpg/png file can be accepted, and each image more than {file_size_max}MB,{limit_total} images at max'
 		},
 		
+		pdfmerge: {
+			btn_merge: 'Generate',
+			number_input_tip: 'Please input any numbers, A PDF file merged with a barcode will be created.',
+			number_length: 'Vänligen ange {min_length} och {max_length} nummers',
+			success_generate: 'The new PDF file is generated successfully!',
+			download_it: 'Download'
+		},
+		
 		dashboard: {
 			bookstat: {
 				barchart_title: 'Book Borrowings and Returns Statistics',
@@ -173,6 +181,7 @@ module.exports = {
 		home: 'Home',
 		admin_dashboard: 'Library Management',
 		user_profile: 'My Profile',
-		upload_img: 'Image Upload'
+		upload_img: 'Image Upload',
+		pdf_merge: 'PDF Merge'
 	}
 }

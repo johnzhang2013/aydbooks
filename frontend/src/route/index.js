@@ -2,6 +2,7 @@
 const Home = () => import("../page/common/home.vue")
 const Login = () => import("../page/common/login.vue")
 const ImageUpload = () => import("../page/common/upload_image.vue");
+const PdfMerge = () => import("../page/common/pdf_merge.vue");
 
 //The user private page
 //const MyBorrowed = () => import("../page/user/myborrowed.vue")
@@ -18,6 +19,7 @@ export default [
 	{ path: '/',  name: 'home', component: Home },
 	{ path: '/login', name: 'user_login', component: Login },
 	{ path: '/uploadimg', name: 'uploadimg', component: ImageUpload },
+	{ path: '/pdfmerge', name: 'pdfmerge', component: PdfMerge },
 	
 	//{ path: '/myborrowed', name: 'myborrowed', component: MyBorrowed },
 	{ path: '/profile', name: 'user_profile', component: Profile },

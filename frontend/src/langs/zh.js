@@ -114,6 +114,14 @@ module.exports = {
 			upload_tip: '只能上传jpg/png文件且不超过{file_size_max}MB，最多{limit_total}张图片!'
 		},
 		
+		pdfmerge: {
+			btn_merge: '生成',
+			number_input_tip: '请输入任何数字，系统生成对应的条形码并合并到左边示例的PDF文件中',
+			number_length: '请输入{min_length} 到 {max_length} 个数字.',
+			success_generate: 'PDF文件生成成功!',
+			download_it: '下载'
+		},
+		
 		dashboard: {
 			bookstat: {
 				barchart_title: '图书借阅及归还情况统计',
@@ -171,6 +179,7 @@ module.exports = {
 		home: '首页',
 		admin_dashboard: '图书管理',
 		user_profile: '个人中心',
-		upload_img: '图片上传'
+		upload_img: '图片上传',
+		pdf_merge: 'PDF文件合并'
 	}	
 }
