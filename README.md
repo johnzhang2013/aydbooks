@@ -16,6 +16,10 @@
 3. guzzlehttp/guzzle ^6.5(**Laravel 6+ may come with it at default**)
 4. aws/aws-sdk-php ^3.216
 5. intervention/image ^2.7
+6. picqer/php-barcode-generator ^0.3.0
+7. setasign/fpdi ^2.3
+8. setasign/fpdi-fpdf ^2.3
+9. setasign/fpdi-tcpdf ^2.3
 
 **For Vue2 part**
 1. axios ^0.26.0
