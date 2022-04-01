@@ -20,6 +20,7 @@ Route::group(['prefix' => 'frontend'], function($router) {
     Route::get('book/basics', 'BookController@basics');
     Route::post('book/list', 'BookController@list');    
     Route::post('uploadimg', 'UploadController@uploadImage');
+    Route::post('pdfmerge', 'PDFMergeController@merge');
 
     //Api Routes for auth
     Route::group(['middleware' => ['auth:user']], function($router) {
