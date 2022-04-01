@@ -104,6 +104,7 @@
 	}
 	.pdfmerge_instruction {
 		float:right;
+		padding-left:50px;
 	}
 	.number_input_text{
 		width:200px;
