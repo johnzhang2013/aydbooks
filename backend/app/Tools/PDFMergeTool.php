@@ -47,19 +47,28 @@ class PDFMergeTool{
             $this->pdf->SetFont('Helvetica');
 
             //Step1 - Remove the original logo of source pdf file
-            $this->pdf->SetFillColor(255, 255, 255);
+            $this->pdf->SetFillColor(255, 255, 255);//set the fill color as white for the rectangle
             $this->pdf->Rect(20, 20, 50, 45, 'F');
 
             //Step2 - Insert a new logo
             $this->pdf->Image($new_logo_file, 20, 20, 50, 45);
 
             //Step3 - Generate a barcode based on the number
-            $tmp_barcode_imginfo = $this->makeBarcodeImg($number);            
+            $tmp_barcode_imginfo = $this->makeBarcodeImg($number);
+            if($tmp_barcode_imginfo === null){//failed to generate
+                $merge_result['status'] = false;
+                $merge_result['code'] = 8888;
+
+                $merge_result['msg'] = trans('pdfmerge.failure_generate_barcode');
+
+                return $merge_result;
+            }
+
             $tmp_barcode_w = $tmp_barcode_imginfo['width'];
             $tmp_barcode_h = $tmp_barcode_imginfo['height'];
 
             //Step4 - Insert the barcode image to a specific position
-            $this->pdf->Image($tmp_barcode_imginfo['path'], 40, 200, $tmp_barcode_w, $tmp_barcode_h);
+            $this->pdf->Image($tmp_barcode_imginfo['path'], 40, 200, $tmp_barcode_w * 0.7, $tmp_barcode_h * 0.7);
 
             //Step5 - Save the merged pdf file
             $this->pdf->Output($pdf_dst_file, "F");
@@ -72,7 +81,7 @@ class PDFMergeTool{
             $merge_result['status'] = false;
             $merge_result['code'] = 9999;
 
-            $merge_result['msg'] = trans('SOURCE_PDF_IS_ENCRYPTED');
+            $merge_result['msg'] = trans('pdfmerge.source_pdf_encrypted');
         }
 
         return $merge_result;

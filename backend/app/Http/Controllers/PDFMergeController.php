@@ -30,7 +30,8 @@ class PDFMergeController extends Controller
 
         if($merge_result['status'] == true){
             //convert a relative url path
-            $new_pdf_fpath = $merge_result['data'];
+            $merge_result['data'] = str_replace(public_path(), '', $merge_result['data']);
+            $merge_result['data']  = url($merge_result['data']);
         }
 
         return response()->json($merge_result);
