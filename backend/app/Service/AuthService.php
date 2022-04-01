@@ -69,7 +69,7 @@ class AuthService{
 			return $this->auth_result;
         }
 
-        $this->auth->logout();
+        $this->auth->logout(true);
 
         $this->auth_result['status'] = true;
         return $this->auth_result;
