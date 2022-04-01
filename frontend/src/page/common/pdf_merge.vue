@@ -91,6 +91,7 @@
 		align-items: center;
 		margin:0 auto;
 		height: 100%;
+		padding-left:300px;
 	}
 	.pdfmerge_panel .title {
 		margin: 0px auto 30px auto;
