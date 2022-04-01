@@ -22,7 +22,6 @@ Route::group(['prefix' => 'frontend'], function($router) {
     Route::post('uploadimg', 'UploadController@uploadImage');
     Route::post('pdfmerge', 'PDFMergeController@merge');
 
-    //Api Routes for auth
     Route::group(['middleware' => ['auth:user']], function($router) {
         Route::post('logout', 'AuthController@logout');
 
@@ -47,10 +46,7 @@ Route::group(['prefix' => 'backend'], function($router) {
         Route::get('dashboard/book_stat', 'DashboardController@getBookStat');
         Route::get('dashboard/book_tops', 'DashboardController@getTopCount');
 
-        /*Route::post('logout', 'AuthController@logout');
-        Route::post('refresh', 'AuthController@refresh');
-        Route::post('profile', 'AuthController@profile');
-
+        /*
         Route::post('member/list', 'MemberController@list');
         Route::get('member/view', 'MemberController@view');
 
