@@ -198,6 +198,7 @@ export default {
 		align-items: center;
 		margin:0 auto;
 		height: 90%;
+		padding-left: 300px;
 	}
 	.title {
 		margin: 0px auto 30px auto;
