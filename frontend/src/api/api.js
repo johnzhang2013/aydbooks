@@ -25,7 +25,7 @@ axios.interceptors.response.use(
 	error => {
 		let error_code = error.response.status;
 		if(error_code == 401 || error_code == 400){//Unauthenticated access or Invalid request
-			store.commit("logout");//Force to log out as it may be a malicious request
+			store.commit("logOut");//Force to log out as we can not set a expire time for window localstorage
 			window.location.replace('/#/login');//we can not use this.$router here
 		}		
 		return Promise.reject(error.response.data);

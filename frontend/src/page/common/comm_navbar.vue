@@ -65,15 +65,47 @@
 			},
 			
 			doLogout() {
-				this.$store.dispatch('beforeLogoutAction').then(() => {
-					if(this.workfor == 'home'){
-						this.linkTo = 'login';
-						this.linkText = this.$t('navbar.login');
-						this.islogged = false;
-					}else{
-						this.$router.replace('/');
+				let u_gt = window.localStorage.getItem('u_gt');
+				let logout_url = null;
+				//we need to use different logout url as the backend use different guards
+				if(u_gt == 'admin'){
+					logout_url = 'api/backend/logout';
+				}else{
+					logout_url = 'api/frontend/logout';
+				}
+				this.$httpapi.post(
+					logout_url,
+					{gt: u_gt},
+					(res) => {
+						if(res.status == true && res.code == 200){
+							this.$store.dispatch('afterLogoutAction').then(() => {
+								if(this.workfor == 'home'){
+									this.linkTo = 'login';
+									this.linkText = this.$t('navbar.login');
+									this.islogged = false;
+								}else{
+									this.$router.replace('/');
+								}
+							});	
+						}else{
+							this.$messsage({
+								message: res.msg,
+								type: 'error',
+								duration: 2000,//2 seconds
+								showClose: true
+							})
+						}
+						
+					},
+					(error) => {
+						this.$messsage({
+							message: error,
+							type: 'error',
+							duration: 2000,//2 seconds
+							showClose: true
+						})
 					}
-				});
+				);
 			}
 		}		
 	}

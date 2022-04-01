@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 |
 */
 
+Route::post('login', 'AuthController@login');
+
 //Api Routes for frontend requests
 Route::group(['prefix' => 'frontend'], function($router) {
     Route::get('book/basics', 'BookController@basics');
@@ -21,6 +23,8 @@ Route::group(['prefix' => 'frontend'], function($router) {
 
     //Api Routes for auth
     Route::group(['middleware' => ['auth:user']], function($router) {
+        Route::post('logout', 'AuthController@logout');
+
         Route::post('book/borrowit', 'BookController@borrow');
         Route::get('user/profile', 'MemberController@profile');
         Route::post('user/brr', 'MemberController@borrowReturnRecords');        
@@ -30,13 +34,12 @@ Route::group(['prefix' => 'frontend'], function($router) {
 
 //Api routes for backend requests
 Route::group(['prefix' => 'backend'], function($router) {
-    Route::post('login', 'AuthController@login');
-
     Route::group(['middleware' => ['auth:admin']], function($router) {
+        Route::post('logout', 'AuthController@logout');
+
         Route::get('book/basics', 'BookController@basics');
         Route::post('book/list', 'BookController@list');
         Route::post('bookcate/list', 'BookCategoryController@list');
-
 
         Route::post('author/list', 'AuthorController@list');
 

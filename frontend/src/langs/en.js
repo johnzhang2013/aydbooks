@@ -169,6 +169,7 @@ module.exports = {
 	navbar: {
 		greeting: 'Hello',
 		login: 'Log in',
+		logout: 'Log out',
 		home: 'Home',
 		admin_dashboard: 'Library Management',
 		user_profile: 'My Profile',

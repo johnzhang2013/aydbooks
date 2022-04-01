@@ -166,6 +166,7 @@ module.exports = {
 	
 	navbar: {
 		login: 'Logga in',
+		logout: 'Logga ut',
 		home: 'Hem',
 		greeting: 'Hallå',
 		admin_dashboard: 'Hantera Böcker',

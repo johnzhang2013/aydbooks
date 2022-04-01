@@ -138,7 +138,7 @@ export default {
 		
 		doLogin(){
 			this.$httpapi.post(
-				'api/backend/login',
+				'api/login',//We use the same api url for admin and member login
 				{
 					'email': this.loginForm.email,
 					'password': md5(this.loginForm.password),//we md5 the password for security
