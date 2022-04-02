@@ -10,9 +10,14 @@ const Profile = () => import("../page/user/profile.vue")
 
 //The admin panel page
 const Dashboard = () => import("../page/admin/dashboard.vue")
+
 const Books = () => import("../page/admin/book.vue")
 const BookCategory = () => import("../page/admin/book_category.vue")
 const Author = () => import("../page/admin/author.vue")
+
+const BRRrecords = () => import("../page/admin/brr_records.vue")
+const BRRstats = () => import("../page/admin/brr_stats.vue")
+const BRRreturn = () => import("../page/admin/brr_return.vue")
 //const Member = () => import("../page/admin/member.vue")
 
 export default [
@@ -28,5 +33,9 @@ export default [
 	{ path: '/books', name: 'books', component: Books},
 	{ path: '/bookcategory', name: 'bookcategory', component: BookCategory},
 	{ path: '/authors', name: 'author', component: Author},
+	
+	{ path: '/brr_records', name: 'brr_records', component: BRRrecords},
+	{ path: '/brr_stats', name: 'brr_stats', component: BRRstats},
+	{ path: '/brr_return', name: 'brr_return', component: BRRreturn},
 	//{ path: '/member', name: 'member', component: Member},
 ];

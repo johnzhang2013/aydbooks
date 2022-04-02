@@ -55,6 +55,23 @@ module.exports = {
 	
 	pages: {
 		common: {
+			admin_menus: {
+				dashboard: 'System översikt',
+				member: 'Medlemmar',
+				books: {
+					title: 'Böcker',
+					author: 'Författare',
+					category: 'Bokkategorier',
+					book: 'Bok'
+				},
+				bbr: {
+					title: 'Lånar och Returnerar',
+					records: 'Låna Skivor',
+					stats: 'Statistik',
+					return: 'Returnera Bok'
+				}
+			},
+			
 			entity: {
 				book: {
 					return: 'Lämna Tillbaka',

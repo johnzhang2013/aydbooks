@@ -3,27 +3,27 @@
 		<div class="navbar-header bg-dark">
 			<span class="xheader_logo">AYD Books</span>
 		</div>
-		<div class="navbar-collapse bg-white-only">
-			<div class="xheader_nav">
-				<ul class="leon-ul">
-					<li class="acc-li">
-						<a href="javascript:void(0);">Logout</a>					
-					</li>
-					<li>
-						<LanguageSwitcher></LanguageSwitcher>
-					</li>
-				</ul>
-			</div>
+		<div class="login_languge_switcher">
+			<LanguageSwitcher></LanguageSwitcher>
 		</div>
+		<div class="common_nav_bar">
+			<CommonNavBar :workfor="page_name"></CommonNavBar>
+		</div>
+		<el-divider class="header_divider"></el-divider>
 	</div>
+	
 </template>
 
 <script>
 	import LanguageSwitcher from "./languages.vue";
+	import CommonNavBar from "../page/common/comm_navbar.vue";
 	export default {
-		name: 'header',	
-		components: {
-			LanguageSwitcher
+		name: 'admin_header',
+		components: { LanguageSwitcher,	CommonNavBar},
+		data() {
+			return {
+				page_name: 'admin_header'
+			}
 		}
 	}
 </script>
@@ -38,6 +38,10 @@
 	.navbar-header {
 	    width: 180px;
 		left: 0px;
+	}
+	.header_divider {
+		margin-top:50px;
+		background-color:#ffaa00;
 	}
 	.bg-dark {
 	    color: #a6a8b1;
@@ -82,5 +86,23 @@
 	.el-dropdown-link {
 		cursor: pointer;
 		color: #409EFF;
+	}
+	.common_nav_bar{
+		position: relative;
+		float: right;
+		height: 10%;
+		margin:12px 0 0 0px;
+		padding-right:20px;
+	}
+	.login_languge_switcher {
+		position: relative;
+		float: right;
+		height: 10%;
+		width:100px;
+		margin:15px 20px 0 0;
+	}
+	.login_languge_switcher .el-dropdown-link {
+		cursor: pointer;
+		color: #000000!important;
 	}
 </style>

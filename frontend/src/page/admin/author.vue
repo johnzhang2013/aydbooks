@@ -134,6 +134,7 @@
 	.authors_table{
 		margin:0 auto;
 		border:1px solid #d3cece;
+		padding: 20px 20px 0 300px;
 	}
 	.authors_paginater{
 		margin:20px 0 10px 200px;

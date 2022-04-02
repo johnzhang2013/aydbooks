@@ -55,6 +55,23 @@ module.exports = {
 	
 	pages: {
 		common: {
+			admin_menus: {
+				dashboard: '控制台',
+				member: '会员',
+				books: {
+					title: '书籍管理',
+					author: '作家',
+					category: '书籍类目',
+					book: '书籍'
+				},
+				bbr: {
+					title: '借阅管理',
+					records: '借还记录',
+					stats: '借阅统计',
+					return: '还书操作'
+				}
+			},
+			
 			entity: {
 				book: {
 					return: '返回',

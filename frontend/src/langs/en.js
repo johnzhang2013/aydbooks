@@ -56,6 +56,23 @@ module.exports = {
 	
 	pages: {
 		common: {
+			admin_menus: {
+				dashboard: 'Dashboard',
+				member: 'Members',
+				books: {
+					title: 'Books',
+					author: 'Authors',
+					category: 'Book Categories',
+					book: 'Book'
+				},
+				bbr: {
+					title: 'Borrows and Returns',
+					records: 'Records',
+					stats: 'Statistics',
+					return: 'Return Book'
+				}
+			},
+			
 			entity: {
 				book: {
 					return: 'Return',

@@ -1,7 +1,10 @@
 <template>
-	<div class="profile_entry">		
+	<div class="profile_entry">
+		<div class="job_entry">
+			<router-link to="/">{{ this.$t('navbar.home') }}</router-link> |
+		</div>
 		<div v-if="islogged" class="job_entry">
-			<router-link :to="this.linkTo"><i class="el-icon-s-tools"></i> {{ this.linkText }}</router-link> |
+			<router-link :to="this.linkTo">{{ this.linkText }}<i class="el-icon-s-tools"></i></router-link> |
 			<span class="logout_span" @click="doLogout"> {{ this.logOut }}</span> |
 		</div>
 		<div v-else class="job_entry">
@@ -24,9 +27,9 @@
 			return {
 				islogged: false,
 				isAdmin: false,
-				uName: null,
-				linkTo: null,
-				linkText: null,
+				uName: '',
+				linkTo: '',
+				linkText: '',
 				logOut: this.$t('navbar.logout')
 			}
 		},
@@ -48,22 +51,17 @@
 				}
 			},
 			setNavbarToLink(){
-				if(this.workfor == 'home'){
-					if(this.islogged){
-						if(this.isAdmin){
-							this.linkTo = 'dashboard';
-							this.linkText = this.$t('navbar.admin_dashboard');
-						}else{
-							this.linkTo = 'profile';
-							this.linkText = this.$t('navbar.user_profile');
-						}
+				if(this.islogged){
+					if(this.isAdmin){
+						this.linkTo = 'dashboard';
+						this.linkText = this.$t('navbar.admin_dashboard');
 					}else{
-						this.linkTo = 'login';
-						this.linkText = this.$t('navbar.login');
+						this.linkTo = 'profile';
+						this.linkText = this.$t('navbar.user_profile');
 					}
 				}else{
-					this.linkTo = '/';
-					this.linkText = this.$t('navbar.home');
+					this.linkTo = 'login';
+					this.linkText = this.$t('navbar.login');
 				}
 			},
 			

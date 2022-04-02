@@ -9,54 +9,60 @@
 					<ul>
 						<li class="topNav">
 							<p>
-								<span title="Dashboard"><a href="/#/dashboard">Dashboard</a></span>
+								<span :title="lang_texts.menus.dashboard"><a href="/#/dashboard">{{ this.lang_texts.menus.dashboard}}</a></span>
 							</p>
 						</li>
 						<li class="topNav">
 							<p>
-								<span title="Members"><a href="/#/members">Members</a></span>
+								<span :title="lang_texts.menus.member"><a href="/#/members">{{this.lang_texts.menus.member}}</a></span>
 							</p>
 						</li>
 						<li class="topNav">
 							<p>
-								<span title="Books">Books</span>
+								<span :title="lang_texts.menus.books_title">{{this.lang_texts.menus.books_title}}</span>
 							</p>
 							<ul>
 								<li class="secondNav">
 									<p>
 										<i class="menu menu-1_1" style="margin-right: 8px;"></i>
-										<span title="Authors"><a href="/#/authors">Authors</a></span>
+										<span :title="lang_texts.menus.books_author"><a href="/#/authors">{{this.lang_texts.menus.books_author}}</a></span>
 									</p>
 								</li>
 								<li class="secondNav">
 									<p>
 										<i class="menu menu-1_2" style="margin-right: 8px;"></i>
-										<span title="Book Categor"><a href="/#/bookcategory">Book Category</a></span>
+										<span :title="lang_texts.menus.books_cates"><a href="/#/bookcategory">{{this.lang_texts.menus.books_cates}}</a></span>
 									</p>
 								</li>
 								<li class="secondNav">
 									<p>
 										<i class="menu menu-1_3" style="margin-right: 8px;"></i> 
-										<span title="Books"><a href="/#/books">Books</a></span>
+										<span :title="lang_texts.menus.books_book"><a href="/#/books">{{this.lang_texts.menus.books_book}}</a></span>
 									</p>
 								</li>
 							</ul>
 						</li>
 						<li class="topNav">
 							<p>
-								<span title="Borrows and Return">Borrows and Returns</span><i class="fa fa-caret-down"></i>
+								<span :title="lang_texts.menus.brr_title">{{lang_texts.menus.brr_title}}</span><i class="fa fa-caret-down"></i>
 							</p>
 							<ul>
 								<li class="secondNav">
 									<p>
 										<i class="menu menu-2_1" style="margin-right: 8px;"></i>
-										<span title="Borrows"><a href="/#/borrows">Borrow Records</a></span>
+										<span :title="lang_texts.menus.brr_records"><a href="/#/brr_records">{{lang_texts.menus.brr_records}}</a></span>
 									</p>
 								</li>
 								<li class="secondNav">
 									<p>
 										<i class="menu menu-2_2" style="margin-right: 8px;"></i>
-										<span title="Statistics"<a href="/#/borrows_stats">Statistics</a></span>
+										<span :title="lang_texts.menus.brr_stats"<a href="/#/brr_stats">{{lang_texts.menus.brr_stats}}</a></span>
+									</p>
+								</li>
+								<li class="secondNav">
+									<p>
+										<i class="menu menu-2_3" style="margin-right: 8px;"></i>
+										<span :title="lang_texts.menus.brr_return"<a href="/#/brr_return">{{lang_texts.menus.brr_return}}</a></span>
 									</p>
 								</li>
 							</ul>
@@ -69,6 +75,26 @@
 </template>
 
 <script>
+	export default {
+		data() {
+			return {
+				lang_texts: {
+					menus: {
+						dashboard: this.$t('pages.common.admin_menus.dashboard'),
+						member: this.$t('pages.common.admin_menus.member'),
+						books_title: this.$t('pages.common.admin_menus.books.title'),
+						books_author: this.$t('pages.common.admin_menus.books.author'),
+						books_cates: this.$t('pages.common.admin_menus.books.category'),
+						books_book: this.$t('pages.common.admin_menus.books.book'),
+						brr_title: this.$t('pages.common.admin_menus.bbr.title'),
+						brr_records: this.$t('pages.common.admin_menus.bbr.records'),
+						brr_stats: this.$t('pages.common.admin_menus.bbr.stats'),
+						brr_return: this.$t('pages.common.admin_menus.bbr.return'),
+					}
+				}
+			}
+		}
+	}
 </script>
 
 <style scoped>
@@ -105,8 +131,8 @@
 	    width: 197px;
 	    overflow-y: scroll;
 	}
-	.navigation-content .topNav {
-	    border-bottom: 2px solid #131d24;
+	.navigation-content .topNav a {
+	    border-bottom: 2px;
 	    cursor: pointer;
 	}
 	.navigation-content .topNav > p {
@@ -116,7 +142,7 @@
 	    color: #a1b2bf;
 	    padding-right: 16px;
 	}
-	.navigation-content .secondNav {
+	.navigation-content .secondNav a {
 	    cursor: pointer;
 	    color: #adbece;
 	}
@@ -127,7 +153,6 @@
 	    padding-right: 16px;
 	}
 	.menu {
-	    background-image: url(../assets/icons/menunav.png);
 	    background-repeat: no-repeat;
 	    display: inline-block;
 	    vertical-align: middle;
@@ -135,12 +160,12 @@
 	.menu-1_1 {
 	    width: 16px;
 	    height: 16px;
-	    background: url(../assets/icons/menunav.png) -10px -82px;
+	    background: url(../assets/icons/menunav.png) -10px -154px;
 	}
 	.menu-1_2 {
 	    width: 16px;
 	    height: 16px;
-	    background: url(../assets/icons/menunav.png) -84px -46px;
+	    background: url(../assets/icons/menunav.png) -82px -226px;
 	}
 	.menu-1_3 {
 	    width: 16px;
@@ -150,11 +175,16 @@
 	.menu-2_1 {
 	    width: 16px;
 	    height: 16px;
-	    background: url(../assets/icons/menunav.png) -154px -154px;
+	    background: url(../assets/icons/menunav.png) -46px -190px;
 	}
 	.menu-2_2 {
 	    width: 16px;
 	    height: 16px;
 	    background: url(../assets/icons/menunav.png) -154px -10px;
+	}
+	.menu-2_3 {
+	    width: 16px;
+	    height: 16px;
+	    background: url(../assets/icons/menunav.png) -190px -226px;
 	}
 </style>
