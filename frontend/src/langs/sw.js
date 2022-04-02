@@ -8,6 +8,7 @@ module.exports = {
 	messages: {
 		common: {
 			lang_switch_success: 'Byt språk framgångsrikt!',
+			loading_show_texts: 'Läser in...',
 		},
 		
 		auth: {
@@ -157,6 +158,62 @@ module.exports = {
 				book_overdued_top_title: 'Mest försenade böcker Top {topn}',
 				bookcate_borrowed_top_title: 'Mest populära bokkategorier Top {topn}',
 				bookcate_overdued_top_title: 'Mest försenade böcker Kategorier Top {topn}'
+			}
+		},
+		
+		author: {
+			empty_results: 'Det finns för närvarande ingen författarinformation i systemet',
+			id: 'ID',
+			author_name: 'Författarens namn',
+			book_total: 'Antal Verk',
+			filter_placeholder: 'Ange författarens namn',
+			btn_edit: 'Redigera',
+			btn_viewbooks: 'Bok Lista'
+		},
+		
+		book_category: {
+			empty_results: 'Det finns för närvarande ingen bokkategoriinformation i systemet',
+			id: 'ID',
+			category_name: 'Kategori Namn',
+			book_total: 'Böcker Totalt',
+			filter_placeholder: 'Vänligen ange kategorinamnet',
+			btn_edit: 'Redigera',
+			btn_viewbooks: 'Böcker Lista'
+		},
+		
+		books: {
+			empty_results: 'Det finns inga tillgängliga böcker',
+			fliter: {
+				isbn: 'ISBN',
+				isbn_placeholder: 'Ange ISBN för en bok',
+				title: 'Titel',
+				title_placeholder: 'Vänligen ange titeln på en bok',
+				all_author: 'Allt',
+				author: 'Författare',
+				author_select_default: 'Välj en författare',
+				all_category: 'Allt',
+				category: 'Kategori',
+				category_select_default: 'Vänligen välj en kategori',
+				onshelf_date: 'Datum på hyllan',
+				onshelf_start: 'Start',
+				onshelf_to: 'Till',
+				onshelf_end: 'Slutet'
+			},
+			column: {
+				isbn: 'ISBN',
+				title: 'Titel',
+				author: 'Författar',
+				category: 'Kategori',
+				stock_qty: 'Lagermängd',
+				onshelf_at: 'Datum på hyllan',
+				borrowed_count: 'Lånade Totalt',
+				overdued_count: 'Försenad Totalt',
+				active: 'Aktiva',
+				actions: 'Handlingar',
+				btn_action_view: 'Detaljer',
+				btn_action_edit: 'Redigera',
+				btn_action_delete: 'Radera',
+				btn_action_records: 'Uppgifter'
 			}
 		},
 		

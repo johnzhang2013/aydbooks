@@ -1,23 +1,26 @@
 <template>
 	<layout>
 		<div class="authors_container">
-			<div v-if="loading" class="my-loading">
-				<i class="el-icon-loading"></i>
-			</div>
-			<div v-else-if="list_data.total == 0">
-				<el-empty description="There are no authors available."></el-empty>
+			<div v-if="list_data.total == 0">
+				<el-empty :description="lang_texts.empty_results"></el-empty>
 			</div>
 			<div class="authors_table" else>
-				<el-table :data="list_data.list" style="width: 100%" stripe border>
-					<el-table-column prop="id" label="ID" width="130px"></el-table-column>
-					<el-table-column prop="name" label="Author Name" width="400px"></el-table-column>
-					<el-table-column prop="books_total" label="Books Total" width="100px"></el-table-column>
+				<el-table :data="list_data.list" style="width: 100%" stripe border 
+					v-loading="loading"
+					:element-loading-text="lang_texts.loading_show_texts"
+					element-loading-spinner="el-icon-loading"
+					element-loading-background="rgba(238, 236, 226, 0.8)"
+				>
+					<el-table-column prop="id" :label="lang_texts.id" width="130px"></el-table-column>
+					<el-table-column prop="name" :label="lang_texts.author_name" width="400px"></el-table-column>
+					<el-table-column prop="books_total" :label="lang_texts.book_total" width="300px"></el-table-column>
 					<el-table-column width="300px">
 						<template slot="header" slot-scope="scope">
-							<el-input v-model="filter.name" size="mini" placeholder="Please type an author name" @keyup.native.enter="doAuthorSearch()"/>
+							<el-input v-model="filter.name" size="mini" :placeholder="lang_texts.filter_placeholder" @keyup.native.enter="doAuthorSearch()"/>
 						</template>
 						<template slot-scope="scope">
-							<el-button type="text" size="small">Edit</el-button>
+							<el-button type="primary" size="small">{{ lang_texts.btn_edit }}</el-button>
+							<el-button type="primary" size="small">{{ lang_texts.btn_viewbooks }}</el-button>
 						</template>
 					</el-table-column>
 				</el-table>
@@ -41,14 +44,24 @@
 	export default {
 		data(){
 			return{
-				loading: false,
+				loading: true,
+				lang_texts: {
+					loading_show_texts: this.$t('messages.common.loading_show_texts'),
+					empty_results: this.$t('pages.author.empty_results'),
+					id: this.$t('pages.author.id'),
+					author_name: this.$t('pages.author.author_name'),
+					book_total: this.$t('pages.author.book_total'),
+					filter_placeholder: this.$t('pages.author.filter_placeholder'),
+					btn_edit: this.$t('pages.author.btn_edit'),
+					btn_viewbooks: this.$t('pages.author.btn_viewbooks')
+				},
 				filter: {
 					name: '',
 					per_page: 10,
 					curr_page: 1
 				},				
 				list_data: {
-					total: 0,
+					total: -1,
 					per_page: 10,
 					curr_page: 1,
 					total_page: 0,
@@ -68,9 +81,12 @@
 			},			
 			//request authors list
 			getAuthorsList(){
+				this.loading = true;
+
 				const authors_filter = JSON.parse(JSON.stringify(this.filter));
 				this.$httpapi.post('/api/backend/author/list', authors_filter, 
 					(res) => {
+						this.loading = false;
 						if(res.status == true && res.code == 200){
 							this.list_data = res.data;
 						}else{

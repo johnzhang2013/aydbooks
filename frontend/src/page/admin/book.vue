@@ -3,76 +3,70 @@
 		<div class="books_container">
 			<ul class="filter-form">
 				<li class="li">
-					<span>Title:</span>
-					<el-input v-model="filter.title" placeholder="Please input a book title" size="small" class="w160" clearable @keyup.enter.native="doBookSearch"></el-input>
+					<span>{{lang_texts.filter.title}}</span>
+					<el-input v-model="filter.title" :placeholder="lang_texts.filter.title_placeholder" size="small" class="w160" clearable @keyup.enter.native="doBookSearch"></el-input>
 				</li>
 				<li class="li">
-					<span>ISBN:</span>
-					<el-input v-model="filter.isbn" placeholder="Please input a book ISBN" size="small" class="w160" clearable @keyup.enter.native="doBookSearch"></el-input>
+					<span>{{lang_texts.filter.isbn}}</span>
+					<el-input v-model="filter.isbn" :placeholder="lang_texts.filter.isbn_placeholder" size="small" class="w160" clearable @keyup.enter.native="doBookSearch"></el-input>
 				</li>
 				<li class="li">
-					<span>Onshelf Date Range:</span>
+					<span>{{lang_texts.filter.onshelf_date}}</span>
 					<el-date-picker v-model="filter.onshelf_datetime" type="daterange" clearable unlink-panels 
-						range-separator="To" 
+						:range-separator="lang_texts.filter.onshelf_to" 
 						format="yyyy-MM-dd" 
 						value-format="yyyy-MM-dd" 
-						start-placeholder="Date Start" 
-						end-placeholder="Date End" 
+						:start-placeholder="lang_texts.filter.onshelf_start" 
+						:end-placeholder="lang_texts.filter.onshelf_end" 
 						@change="doBookSearch">
 					</el-date-picker>
 				</li>
 				<li class="li">
-					<span>Authors:</span>
-					<el-select v-model="filter.author_id" placeholder="Please choose an author" size="small" @change="doBookSearch">
-						<el-option :label="0" value="All"></el-option>
+					<span>{{lang_texts.filter.author}}</span>
+					<el-select v-model="filter.author_id" :placeholder="lang_texts.filter.author_select_default" size="small" @change="doBookSearch">
+						<el-option :label="0" :value="lang_texts.filter.all_author"></el-option>
 						<el-option v-for="author in sys_authors" :label="author.label" :value="author.value" :key="author.value"></el-option>
 					</el-select>
 				</li>
 				<li class="li">
-					<span>Category:</span>
-					<el-select v-model="filter.category_id" placeholder="Please choose an book category" size="small" @change="doBookSearch">
-						<el-option :label="0" value="All"></el-option>
+					<span>{{lang_texts.filter.category}}</span>
+					<el-select v-model="filter.category_id" :placeholder="lang_texts.filter.category_select_default" size="small" @change="doBookSearch">
+						<el-option :label="0" :value="lang_texts.filter.all_category"></el-option>
 						<el-option v-for="category in sys_bookcategories" :label="category.label" :value="category.value" :key="category.value"></el-option>
 					</el-select>
 				</li>
 				<li><el-button icon="el-icon-search" type="success"  size='large' @click.native="doBookSearch"></el-button></li>
 			</ul>		
 			<div class="books_table">
-				<div v-if="loading" class="my-loading">
-					<i class="el-icon-loading"></i>
-				</div>
-				<div v-else-if="list_data.total == 0">
-					<el-empty description="There are no books available."></el-empty>
+				<div v-if="list_data.total == 0">
+					<el-empty :description="lang_texts.loading_show_texts"></el-empty>
 				</div>
 				<div else>
-					<el-table :data="list_data.list" style="width: 100%" :cell-class-name="lowStockAlert" stripe border>
-						<el-table-column type="expand" fixed>
-							<template slot-scope="props">
-								<el-form label-position="left" inline class="book-intro-expand">
-									<el-form-item>
-										<span>{{ props.row.brief_intro }}</span>
-									</el-form-item>
-								</el-form>
-							</template>
-						</el-table-column>
-						<el-table-column prop="isbn" fixed label="ISBN" width="130px"></el-table-column>
-						<el-table-column prop="title" label="Title" width="500px"></el-table-column>
-						<el-table-column prop="author" label="Author" width="400px"></el-table-column>
-						<el-table-column prop="category" label="Category" width="150px"></el-table-column>
-						<el-table-column prop="stock" label="StockQty" width="100px"></el-table-column>
-						<el-table-column prop="borrowed_count" label="Borrowed" width="100px"></el-table-column>
-						<el-table-column prop="onshelf_datetime" label="Onshelf At" width="200px"></el-table-column>
-						<el-table-column prop="is_active" label="Active" width="100px">
+					<el-table :data="list_data.list" style="width: 100%" :cell-class-name="lowStockAlert" stripe border
+						v-loading="loading"
+						:element-loading-text="lang_texts.loading_show_texts"
+						element-loading-spinner="el-icon-loading"
+						element-loading-background="rgba(238, 236, 226, 0.8)"
+					>
+						<el-table-column prop="isbn" fixed :label="lang_texts.column.isbn" width="130px"></el-table-column>
+						<el-table-column prop="title" :label="lang_texts.column.title" width="500px"></el-table-column>
+						<el-table-column prop="author" :label="lang_texts.column.author" width="400px"></el-table-column>
+						<el-table-column prop="category" :label="lang_texts.column.category" width="150px"></el-table-column>
+						<el-table-column prop="stock" :label="lang_texts.column.stock_qty" width="100px"></el-table-column>
+						<el-table-column prop="borrowed_count" :label="lang_texts.column.borrowed_count" width="150px"></el-table-column>
+						<el-table-column prop="overdued_count" :label="lang_texts.column.overdued_count" width="150px"></el-table-column>
+						<el-table-column prop="onshelf_datetime" :label="lang_texts.column.onshelf_at" width="200px"></el-table-column>
+						<el-table-column prop="is_active" :label="lang_texts.column.active" width="100px">
 							<template slot-scope="scope">
 								<el-switch v-model="scope.row.is_active" active-color="#13ce66" inactive-color="#DCDFE6" :active-value="1" :inactive-value="0" />
 							</template>
 						</el-table-column>
-						<el-table-column label="Actions" fixed="right" width="300px">
+						<el-table-column :label="lang_texts.column.actions" fixed="right" width="300px">
 							<template slot-scope="scope">
-								<el-button type="danger" icon="el-icon-delete" circle title="Delete" @click="formvisible.book_edit_form = true"></el-button>
-								<el-button type="primary" icon="el-icon-edit" circle title="Update" @click=""></el-button>
-								<el-button type="success" icon="el-icon-check" circle title="Borrow Records" @click=""></el-button>
-								<el-button type="warning" icon="el-icon-star-off" circle title="Overdue Records" @click=""></el-button>
+								<el-button type="success" icon="el-icon-view" circle :title="lang_texts.column.btn_action_view" @click=""></el-button>
+								<el-button type="danger" icon="el-icon-delete" circle :title="lang_texts.column.btn_action_delete" @click=""></el-button>
+								<el-button type="primary" icon="el-icon-edit" circle :title="lang_texts.column.btn_action_edit" @click=""></el-button>
+								<el-button type="success" icon="el-icon-check" circle :title="lang_texts.column.btn_action_records" @click=""></el-button>
 							</template>
 						</el-table-column>
 					</el-table>
@@ -90,28 +84,55 @@
 				</div>
 			</div>
 		</div>
-		<BookEntity />
-		<BookBorrowHistory />
 	</layout>
 </template>
 
 <script>
-	import BookEntity from "./components/book_entity";
-	import BookBorrowHistory from "./components/book_borrow_history";
+	//import BookEntity from "./components/book_entity";
+	//import BookBorrowHistory from "./components/book_borrow_history";
 	
 	export default {
 		data(){
 			return{
-				loading: false,
-				formvisible: {
-					book_edit_form: false,
-					book_borrow_record_table: false
+				loading: true,
+				lang_texts: {
+					loading_show_texts: this.$t('messages.common.loading_show_texts'),
+					empty_results: this.$t('pages.books.empty_results'),
+					
+					filter: {
+						isbn: this.$t('pages.books.fliter.isbn'),
+						isbn_placeholder: this.$t('pages.books.fliter.isbn_placeholder'),
+						title: this.$t('pages.books.fliter.title'),
+						title_placeholder: this.$t('pages.books.fliter.title_placeholder'),
+						author: this.$t('pages.books.fliter.author'),
+						all_author: this.$t('pages.books.fliter.all_author'),
+						author_select_default: this.$t('pages.books.fliter.author_select_default'),
+						category: this.$t('pages.books.fliter.category'),
+						all_category: this.$t('pages.books.fliter.all_category'),
+						category_select_default: this.$t('pages.books.fliter.category_select_default'),
+						onshelf_date: this.$t('pages.books.fliter.onshelf_date'),
+						onshelf_start: this.$t('pages.books.fliter.onshelf_start'),
+						onshelf_to: this.$t('pages.books.fliter.onshelf_to'),
+						onshelf_end: this.$t('pages.books.fliter.onshelf_end')
+					},
+					column: {
+						isbn: this.$t('pages.books.column.isbn'),
+						title: this.$t('pages.books.column.title'),
+						author: this.$t('pages.books.column.author'),
+						category: this.$t('pages.books.column.category'),
+						stock_qty: this.$t('pages.books.column.stock_qty'),
+						borrowed_count: this.$t('pages.books.column.borrowed_count'),
+						overdued_count: this.$t('pages.books.column.overdued_count'),
+						onshelf_at: this.$t('pages.books.column.onshelf_at'),
+						active: this.$t('pages.books.column.active'),
+						actions: this.$t('pages.books.column.actions'),
+						btn_action_view: this.$t('pages.books.column.btn_action_view'),
+						btn_action_edit: this.$t('pages.books.column.btn_action_edit'),
+						btn_action_delete: this.$t('pages.books.column.btn_action_delete'),
+						btn_action_records: this.$t('pages.books.column.btn_action_records'),
+					}
 				},
-				formLabelWidth: '120px',
-				BookEditForm: {
-					name: '',
-					region: ''
-				},
+				
 				filter: {
 					isbn: '',
 					title: '',
@@ -122,7 +143,7 @@
 					curr_page: 1
 				},				
 				list_data: {
-					total: 0,
+					total: -1,
 					per_page: 10,
 					curr_page: 1,
 					total_page: 0,
@@ -133,10 +154,7 @@
 			};
 		},
 		
-		components:{
-			BookEntity, 
-			BookBorrowHistory
-		},
+		//components:{BookEntity, BookBorrowHistory},
 		
 		mounted(){
 			this.initBooksBasicOptions();
@@ -145,7 +163,7 @@
 		
 		methods: {
 			lowStockAlert({row, column, rowIndex, columnIndex}) {
-				if(column.label != 'StockQty') return;
+				if(columnIndex != 4) return;
 			
 				if (row.stock <= 5) {
 					return 'lsa-lose';
@@ -162,9 +180,13 @@
 			
 			//request books list
 			getBooksList(){
+				this.loading = true;
+				
 				const book_filter = JSON.parse(JSON.stringify(this.filter));
 				this.$httpapi.post('/api/backend/book/list', book_filter, 
 					(res) => {
+						this.loading = false;
+						
 						if(res.status == true && res.code == 200){
 							this.list_data = res.data;
 						}else{

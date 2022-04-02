@@ -8,12 +8,9 @@ module.exports = {
 	messages: {
 		common: {
 			lang_switch_success: 'Switch the language successfully!',
+			loading_show_texts: 'Loading...',
 		},
-		
-		auth: {
-			
-		},
-		
+
 		borrow: {
 			not_logged: 'You need to logged as a user to borrow it!'
 		}
@@ -159,6 +156,62 @@ module.exports = {
 				book_overdued_top_title: 'Most Overdued Books Top {topn}',
 				bookcate_borrowed_top_title: 'Most Popular Book Categories Top {topn}',
 				bookcate_overdued_top_title: 'Most Overdued Books Categories Top {topn}'
+			}
+		},
+		
+		author: {
+			empty_results: 'There is currently no author information in the system',
+			id: 'ID',
+			author_name: 'Author Name',
+			book_total: 'Number of Works',
+			filter_placeholder: 'Please enter the author name',
+			btn_edit: 'Edit',
+			btn_viewbooks: 'Book List'
+		},
+		
+		book_category: {
+			empty_results: 'There is currently no book category information in the system',
+			id: 'ID',
+			category_name: 'Category Name',
+			book_total: 'Books Total',
+			filter_placeholder: 'Please input the category name',
+			btn_edit: 'Edit',
+			btn_viewbooks: 'Books List'
+		},
+		
+		books: {
+			empty_results: 'There are no any books available',
+			fliter: {
+				isbn: 'ISBN',
+				isbn_placeholder: 'Please input the ISBN of a book',
+				title: 'Title',
+				title_placeholder: 'Please input the title of a book',
+				all_author: 'All',
+				author: 'Author',
+				author_select_default: 'Please choose an author',
+				all_category: 'All',
+				category: 'Category',
+				category_select_default: 'Please choose a category',
+				onshelf_date: 'Onshelf Date',
+				onshelf_start: 'Start',
+				onshelf_to: 'To',
+				onshelf_end: 'End'
+			},
+			column: {
+				isbn: 'ISBN',
+				title: 'Title',
+				author: 'Author',
+				category: 'Category',
+				stock_qty: 'Stocks',
+				onshelf_at: 'Onshelf Date',
+				borrowed_count: 'Borrowed Total',
+				overdued_count: 'Overdued Total',
+				active: 'Active',
+				actions: 'Actions',
+				btn_action_view: 'Detail',
+				btn_action_edit: 'Edit',
+				btn_action_delete: 'Delete',
+				btn_action_records: 'Records'
 			}
 		},
 		

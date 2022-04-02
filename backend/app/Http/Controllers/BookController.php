@@ -68,6 +68,7 @@ class BookController extends CommonController
                 $_tmp_book['category'] = $sys_book_basics['bookcategories'][$_book->category_id];
                 $_tmp_book['stock'] = $_book->stock;
                 $_tmp_book['borrowed_count'] = $_book->borrowed_count;                
+                $_tmp_book['overdued_count'] = $_book->overdued_count;  
                 $_tmp_book['onshelf_datetime'] = $_book->onshelf_datetime;               
                 $_tmp_book['is_active'] = $_book->is_active;
 

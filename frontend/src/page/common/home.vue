@@ -46,14 +46,16 @@
 				<li><el-button icon="el-icon-search" type="success"  size='large' @click.native="doBookSearch"></el-button></li>
 			</ul>		
 			<div class="books_table">
-				<div v-if="loading" class="my-loading">
-					<i class="el-icon-loading"></i>
-				</div>
-				<div v-else-if="list_data.total == 0">
+				<div v-if="list_data.total == 0">
 					<el-empty :description="lang_texts.empty_results"></el-empty>
 				</div>
 				<div else>
-					<el-table :data="list_data.list" style="width: 100%" :cell-class-name="lowStockAlert" stripe border>
+					<el-table :data="list_data.list" style="width: 100%" :cell-class-name="lowStockAlert" stripe border
+						v-loading="loading"
+						:element-loading-text="lang_texts.loading_show_texts"
+						element-loading-spinner="el-icon-loading"
+						element-loading-background="rgba(238, 236, 226, 0.8)"
+					>
 						<el-table-column prop="isbn" fixed :label="lang_texts.columns_label.isbn" width="130px"></el-table-column>
 						<el-table-column prop="title" :label="lang_texts.columns_label.title" width="500px"></el-table-column>
 						<el-table-column prop="author" :label="lang_texts.columns_label.author" width="400px"></el-table-column>
@@ -139,6 +141,7 @@
 				page_name: 'home',
 				loading: false,
 				lang_texts:{
+					loading_show_texts: this.$t('messages.common.loading_show_texts'),
 					empty_results: this.$t('pages.home.list.empty_result'),
 					columns_label: {
 						isbn: this.$t('pages.home.list.column.isbn'),
@@ -184,7 +187,7 @@
 					curr_page: 1
 				},				
 				list_data: {
-					total: 0,
+					total: -1,
 					per_page: 10,
 					curr_page: 1,
 					total_page: 0,
@@ -293,9 +296,13 @@
 			
 			//request books list
 			getBooksList(){
+				this.loading = true;
+				
 				const book_filter = JSON.parse(JSON.stringify(this.filter));
 				this.$httpapi.post('/api/frontend/book/list', book_filter, 
 					(res) => {
+						this.loading = false;
+						
 						if(res.status == true && res.code == 200){
 							this.list_data = res.data;
 						}else{

@@ -8,6 +8,7 @@ module.exports = {
 	messages: {
 		common: {
 			lang_switch_success: '系统语言切换成功',
+			loading_show_texts: '系统正在拼命加载中...'
 		},
 		
 		auth: {
@@ -159,7 +160,63 @@ module.exports = {
 				bookcate_overdued_top_title: '最多超期书籍类目Top{topn}'
 			}
 		},
-
+		
+		author: {
+			empty_results: '系统当前无任何作家信息',
+			id: 'ID',
+			author_name: '作家名称',
+			book_total: '著作数量',
+			filter_placeholder: '请输入作家名称',
+			btn_edit: '编辑',
+			btn_viewbooks: '著作清单'
+		},
+		
+		book_category: {
+			empty_results: '系统当前无书籍类目信息',
+			id: 'ID',
+			category_name: '类目名称',
+			book_total: '作品数量',
+			filter_placeholder: '请输入类目名称',
+			btn_edit: '编辑',
+			btn_viewbooks: '书籍列表'
+		},
+		
+		books: {
+			empty_results: '系统当前无书籍信息',
+			fliter: {
+				isbn: 'ISBN',
+				isbn_placeholder: '请输入一个书籍的ISBN',
+				title: '书名',
+				title_placeholder: '请输入一个书名',
+				all_author: '所有',
+				author: '作家',
+				author_select_default: '请选择一个作家',
+				all_category: '所有',
+				category: '类目',
+				category_select_default: '请选择一个类目',
+				onshelf_date: '上架日期',
+				onshelf_start: '开始日期',
+				onshelf_to: '到',
+				onshelf_end: '结束日期'
+			},
+			column: {
+				isbn: 'ISBN',
+				title: '书名',
+				author: '作家',
+				category: '类目',
+				stock_qty: '库存',
+				onshelf_at: '上架日期',
+				borrowed_count: '借阅量',
+				overdued_count: '逾期量',
+				active: '是否可借',
+				actions: '操作',
+				btn_action_view: '查看',
+				btn_action_edit: '编辑',
+				btn_action_delete: '删除',
+				btn_action_records: '借阅记录'
+			}
+		},
+		
 		profile: {
 			tab_profile: '个人信息',
 			tab_brr: '借阅记录',
