@@ -162,6 +162,8 @@ module.exports = {
 		},
 		
 		members: {
+			empty_results: 'Det finns inga medlemsregister i systemet ännu',
+			
 			id: 'ID',
 			email: 'Medlemsmail',
 			name: 'Användarnamn',

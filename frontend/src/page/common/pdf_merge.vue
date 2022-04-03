@@ -4,7 +4,7 @@
 			<LanguageSwitcher></LanguageSwitcher>
 		</div>
 		<div class="common_nav_bar">
-			<CommonNavBar :workfor="pdfmerge"></CommonNavBar>
+			<CommonNavBar workfor="pdfmerge"></CommonNavBar>
 		</div>
 		<div class="pdfmerge_panel">
 			<div class="pdfmerge_sample">

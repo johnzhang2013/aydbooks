@@ -160,6 +160,8 @@ module.exports = {
 		},
 		
 		members: {
+			empty_results: 'There are no member records in the system yet',
+			
 			id: 'ID',
 			email: 'Email',
 			name: 'Username',

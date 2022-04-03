@@ -30,7 +30,7 @@ class UploadController extends CommonController
         $uimage = $request->file('uimage');
 
         //step1 move this uploaded image to a path
-        $src_image_path = $uimage->store('images/src');
+        $src_image_path = $uimage->store('images'.DIRECTORY_SEPARATOR.'src');
 
         //step2 resize this image as we want
         //Todo use Intervention/image libiray to resize this image into 3 size(large/medium/small) images
@@ -39,11 +39,14 @@ class UploadController extends CommonController
         //step3 save it to aws s3
         $aws3s_objurls = [];
         $upload_result['data']['img_urls'] = [];
-        foreach($resized_image_paths as $_resizde_imgpath){
-            $aws3s_res = $this->uplaodToAwss3(md5($_resizde_imgpath), $_resizde_imgpath);
+        foreach($resized_image_paths as $_resized_level => $_resized_imgpath){
+            $aws3s_res = $this->uplaodToAwss3(md5($_resized_imgpath), $_resized_imgpath);
             if($aws3s_res['status'] == true){
                 $upload_result['status'] = true;
-                $upload_result['data']['img_urls'][] = $aws3s_res['data']['obj_url'];
+                $upload_result['data']['img_urls'][$_resized_level] = [
+                    'local_url' => url(str_replace(storage_path('app'), '', $_resized_imgpath)),
+                    's3_url' => $aws3s_res['data']['obj_url']
+                ];
                 
             }else{
                 //Todo more logic for error handle
@@ -77,12 +80,12 @@ class UploadController extends CommonController
 
         $irs = ImageResizeService::getInstance();
 
-        $src_image_path_abs = storage_path('app/').$src_image_path;
-        $dst_image_path = storage_path('app/images/');
+        $src_image_path_abs = storage_path('app'.DIRECTORY_SEPARATOR).$src_image_path;
+        $dst_image_path = storage_path('app'.DIRECTORY_SEPARATOR.'images'.DIRECTORY_SEPARATOR);
 
         $resized_image_paths = [];        
         foreach($size_levels as $_slevel){
-            $rdst_image_path = $dst_image_path.$_slevel['dst_subpath'].'/';
+            $rdst_image_path = $dst_image_path.$_slevel['dst_subpath'].DIRECTORY_SEPARATOR;
 
             $resized_image_paths[$_slevel['dst_subpath']] = $irs->resize($src_image_path_abs, $rdst_image_path, $_slevel['size_width']);
         }

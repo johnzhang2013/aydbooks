@@ -162,6 +162,8 @@ module.exports = {
 		},
 		
 		members: {
+			empty_results: '系统中尚未有任何会员记录',
+			
 			id: 'ID',
 			email: '会员邮箱',
 			name: '会员用户名',

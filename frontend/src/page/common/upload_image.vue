@@ -4,7 +4,7 @@
 			<LanguageSwitcher></LanguageSwitcher>
 		</div>
 		<div class="common_nav_bar">
-			<CommonNavBar :workfor="image_upload"></CommonNavBar>
+			<CommonNavBar workfor="image_upload"></CommonNavBar>
 		</div>
 		<div class="upload_panel">
 			<el-upload class="upload-demo" list-type="picture" drag name="uimage"
