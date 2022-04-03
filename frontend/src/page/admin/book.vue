@@ -58,7 +58,7 @@
 						<el-table-column prop="onshelf_datetime" :label="lang_texts.column.onshelf_at" width="200px"></el-table-column>
 						<el-table-column prop="is_active" :label="lang_texts.column.active" width="100px">
 							<template slot-scope="scope">
-								<el-switch v-model="scope.row.is_active" active-color="#13ce66" inactive-color="#DCDFE6" :active-value="1" :inactive-value="0" />
+								<el-switch disabled="true" v-model="scope.row.is_active" active-color="#13ce66" inactive-color="#DCDFE6" :active-value="1" :inactive-value="0" />
 							</template>
 						</el-table-column>
 						<el-table-column :label="lang_texts.column.actions" fixed="right" width="300px">

@@ -161,6 +161,25 @@ module.exports = {
 			}
 		},
 		
+		members: {
+			id: 'ID',
+			email: '会员邮箱',
+			name: '会员用户名',
+			is_active: '是否禁止借书',
+			lendable_qty: '借书额度(本)',
+			
+			borrowing_normal_total: '在借[正常]',
+			borrowing_overdued_total: '在借[逾期]',
+			returned_normal_total: '已还[正常]',
+			returned_overdued_total: '已还[逾期]',
+			
+			filter_placeholder_name: '请输入会员用户名',
+			filter_placeholder_email: '请输入会员邮箱',
+			
+			btn_edit: '编辑',
+			btn_viewbrrs: '会员-借阅记录'
+		},
+		
 		author: {
 			empty_results: '系统当前无任何作家信息',
 			id: 'ID',

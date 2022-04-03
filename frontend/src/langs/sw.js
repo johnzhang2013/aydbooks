@@ -161,6 +161,24 @@ module.exports = {
 			}
 		},
 		
+		members: {
+			id: 'ID',
+			email: 'Medlemsmail',
+			name: 'Användarnamn',
+			is_active: 'Aktiverad',
+			lendable_qty: 'Lånebelopp (bok)',
+			
+			borrowing_normal_total: 'Låna[Normal]',
+			borrowing_overdued_total: 'Låna[Försenad]',
+			returned_normal_total: 'Returnerad[Normal]',
+			returned_overdued_total: 'Returnerad[Försenad]',	
+			
+			filter_placeholder_name: 'Vänligen ange medlemmens användarnamn',
+			filter_placeholder_email: 'Vänligen ange medlemsmail',
+			btn_edit: 'Redigera',
+			btn_viewbrrs: 'Låna Skivor'
+		},
+		
 		author: {
 			empty_results: 'Det finns för närvarande ingen författarinformation i systemet',
 			id: 'ID',

@@ -159,6 +159,24 @@ module.exports = {
 			}
 		},
 		
+		members: {
+			id: 'ID',
+			email: 'Email',
+			name: 'Username',
+			is_active: 'Actived',
+			lendable_qty: 'Lendable Qty',
+			
+			borrowing_normal_total: 'Borrowing[Normal]',
+			borrowing_overdued_total: 'Borrowing[Overdued]',
+			returned_normal_total: 'Returned[Normal]',
+			returned_overdued_total: 'Returned[Overdued]',
+			
+			filter_placeholder_name: 'Please input an username',
+			filter_placeholder_email: 'Please input an Email',
+			btn_edit: 'Edit',
+			btn_viewbrrs: 'Borrow&Return Records'
+		},
+		
 		author: {
 			empty_results: 'There is currently no author information in the system',
 			id: 'ID',

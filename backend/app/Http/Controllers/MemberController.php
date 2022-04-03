@@ -26,7 +26,50 @@ class MemberController extends CommonController
     }
     
     public function list(Request $request){
+        $conditions = $this->generateQueryConditions($request->all());
+        $paginate = $this->generateQueryPaginate($request->all());
 
+        $lists = [];
+        $lists['data'] = [];
+        $lists['data']['list'] = [];
+
+        $lists['data']['total'] = 0;
+        $lists['data']['total_page'] = 0;
+        $lists['data']['per_page'] = $paginate['limit'];
+        $lists['data']['curr_page'] = $paginate['offset'];
+
+        $members = MemberService::getInstance()->list($conditions, $paginate);
+        if($members->total() > 0){
+            foreach($members as $_member){
+                $_tmp_member = [];
+
+                $_tmp_member['name'] = $_member->name;
+                $_tmp_member['email'] = $_member->email;
+                $_tmp_member['is_active'] = $_member->is_active;
+                $_tmp_member['lendable_qty'] = $_member->lendable_qty;
+
+                //calculate the borrow return records count of this member
+                $_tmp_brr_count = $this->buildMembersBRRCount($_member);
+
+                $_tmp_member['borrowing_normal_total'] = $_tmp_brr_count['borrowing_normal'];
+                $_tmp_member['borrowing_overdued_total'] = $_tmp_brr_count['borrowing_overdued'];
+                $_tmp_member['returned_normal_total'] = $_tmp_brr_count['returned_normal'];
+                $_tmp_member['returned_overdued_total'] = $_tmp_brr_count['returned_overdued'];
+
+                $lists['data']['list'][] = $_tmp_member;
+            }
+
+            $lists['data']['total'] = $members->total();
+            $lists['data']['total_page'] =  ceil($members->total() / $paginate['limit']);
+
+            $lists['status'] = true;
+            $lists['code'] = 200;
+        }else{
+            $lists['status'] = false;
+            $lists['code'] = 400;
+        }
+
+        return response()->json($lists);
     }
 
     public function books(Request $request){
@@ -137,6 +180,7 @@ class MemberController extends CommonController
         return response()->json($brr_lists);
     }
 
+    //This is for borrow return reocrds of one specific member 
     private function generateQueryConditionsForMemberBRR($member_id = null ,$filters = []){
         $conditions = [];
         $conditions[] = ['user_id', '=', $member_id];//
@@ -198,6 +242,7 @@ class MemberController extends CommonController
         return $conditions;
     }
 
+    //This is for one specific member profile
     private function buildMemberBRRCount($member = null){
         $book_cfg = config('books.borrowed_status');
         $brr_records = $member->borrow_return_records;
@@ -215,5 +260,77 @@ class MemberController extends CommonController
         if($brr_no_returns == 0) return 0;
 
         return $brr_no_returns.'/'.$brr_total;
+    }
+
+    //This is for members list
+    private function generateQueryConditions($filters = []){
+        $conditions = [];
+        $allowed_conditions = ['email', 'name'];
+
+        foreach($filters as $_fk => $_fv){
+            if(in_array($_fk, $allowed_conditions)){
+                if($_fk == 'email'){
+                    if(trim($_fv) == null || empty(trim($_fv))){
+                        continue;
+                    }else{
+                        $conditions[] = [$_fk, '=', trim($_fv)];
+                    }
+                }
+
+                if($_fk == 'name'){
+                    if(trim($_fv) == null || empty(trim($_fv))){
+                        continue;
+                    }else{
+                        $conditions[] = [$_fk, 'like', trim($_fv)];
+                    }
+                }
+            }
+        }
+
+        return $conditions;
+    }
+
+    //This is for members list 
+    private function buildMembersBRRCount($member = null) {
+        $book_cfg = config('books.borrowed_status');
+        $brr_records = $member->borrow_return_records;
+
+        $brr_count = [
+            'all_total' => 0,
+            'borrowing_normal' => 0,
+            'borrowing_overdued' => 0,
+            'returned_normal' => 0, 
+            'returned_overdued' => 0
+        ];
+
+        $brr_total = $brr_records->count();
+        if($brr_total == 0) return $brr_count;
+
+        $brr_borrowing_normal = 0;
+        $brr_borrowing_overdued = 0;
+        $brr_returned_normal = 0;
+        $brr_returned_overdued = 0;
+
+        foreach($brr_records as $_brr){
+            if($_brr->status == $book_cfg['BeBorrowingNormal']){
+                $brr_borrowing_normal++;
+            }else if($_brr->status == $book_cfg['BeBorrowingOverdued']){
+                $brr_borrowing_overdued++;
+            }else if($_brr->status == $book_cfg['BeReturnedNormal']){
+                $brr_returned_normal++;
+            }else{
+                $brr_returned_overdued++;
+            }
+        }
+        
+        $brr_count = [
+            'all_total' => $brr_total,
+            'borrowing_normal' => $brr_borrowing_normal,
+            'borrowing_overdued' => $brr_borrowing_overdued,
+            'returned_normal' => $brr_returned_normal, 
+            'returned_overdued' => $brr_returned_overdued
+        ];
+
+        return $brr_count;
     }
 }

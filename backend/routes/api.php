@@ -46,9 +46,9 @@ Route::group(['prefix' => 'backend'], function($router) {
         Route::get('dashboard/book_stat', 'DashboardController@getBookStat');
         Route::get('dashboard/book_tops', 'DashboardController@getTopCount');
 
-        /*
-        Route::post('member/list', 'MemberController@list');
-        Route::get('member/view', 'MemberController@view');
+        Route::post('members/list', 'MemberController@list');
+        
+        /*Route::get('member/view', 'MemberController@view');
 
         Route::post('member/search', 'MemberController@search');
         Route::post('member/update', 'MemberController@update');
