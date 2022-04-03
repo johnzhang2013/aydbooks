@@ -26,7 +26,6 @@
 					{{ this.$t('pages.uploadimg.upload_tip', {file_size_max: this.file_size_max, limit_total: this.files_limit_max}) }}
 				</div>
 			</el-upload>
-			<el-divider></el-divider>
 			<el-image v-for="url in resized_image_urls" :key="url" :src="url" lazy></el-image>
 		</div>
 	</div>
