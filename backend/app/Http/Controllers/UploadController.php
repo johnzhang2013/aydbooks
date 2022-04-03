@@ -38,16 +38,15 @@ class UploadController extends CommonController
 
         //step3 save it to aws s3
         $aws3s_objurls = [];
-        $upload_result['data']['img_urls'] = [];
+        $upload_result['data']['local_img_urls'] = [];
+        $upload_result['data']['s3_img_urls'] = [];
         foreach($resized_image_paths as $_resized_level => $_resized_imgpath){
             $aws3s_res = $this->uplaodToAwss3(md5($_resized_imgpath), $_resized_imgpath);
             if($aws3s_res['status'] == true){
                 $upload_result['status'] = true;
-                $upload_result['data']['img_urls'][$_resized_level] = [
-                    'local_url' => url(str_replace(storage_path('app'), '', $_resized_imgpath)),
-                    's3_url' => $aws3s_res['data']['obj_url']
-                ];
-                
+
+                $upload_result['data']['local_img_urls'][] = url(str_replace(storage_path('app'), '', $_resized_imgpath));
+                $upload_result['data']['s3_img_urls'][] = $aws3s_res['data']['obj_url'];
             }else{
                 //Todo more logic for error handle
 

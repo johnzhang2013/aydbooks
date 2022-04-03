@@ -14,7 +14,7 @@
 				:on-exceed="handleFilesCountExceed"
 				:on-success="handleUploadSuccess"
 				:on-error="handleUploadError"
-				:file-list="imageFilesList"
+				:file-list="image_files_list"
 				:limit="this.files_limit_max"
 			>
 				<i class="el-icon-upload"></i>
@@ -26,6 +26,9 @@
 					{{ this.$t('pages.uploadimg.upload_tip', {file_size_max: this.file_size_max, limit_total: this.files_limit_max}) }}
 				</div>
 			</el-upload>
+			<el-image  style="width: 100px; height: 100px" :src="small_url" :preview-src-list="medium_large_urls">
+			  </el-image>
+			<el-image v-for="url in resized_image_urls" :key="url" :src="url" lazy></el-image>
 		</div>
 	</div>
 </template>
@@ -40,7 +43,8 @@
 				request_headers: null,
 				files_limit_max: 1,
 				file_size_max: 5,
-				imageFilesList: [],
+				image_files_list: [],
+				resized_image_urls: [],
 				lang_texts: {
 					upload_btn_text1: this.$t('pages.uploadimg.upload_btn_text1'),
 					upload_btn_text2: this.$t('pages.uploadimg.upload_btn_text2')
@@ -73,7 +77,7 @@
 			},
 			
 			//show messages if file count exceed
-			handleFilesCountExceed(files, fileList) {				
+			handleFilesCountExceed(files, fileList) {
 				let t_params = { limit_total: this.files_limit_max }
 				this.$message.warning(this.$t('forms.uploadimg.validation.upload_files_max', t_params));
 			},
@@ -81,15 +85,17 @@
 			//show images and message after uploaded successfully
 			handleUploadSuccess(res, file) {
 				if(res.status == true && res.code == 200){
+					this.resized_image_urls = res.data.local_img_urls;
+					
 					this.$message('[' + res.code +'] ' + res.msg);
 				}else{
-					//this.imageFilesList = [];
 					this.$message('[' + res.code +'] ' + res.msg);
 				}
 			},
 			
 			//show message after it failured
 			handleUploadError(res, file) {
+				this.image_files_list = [];
 				this.$message('[' + res.code +'] ' + res.msg);
 			}
 		}
