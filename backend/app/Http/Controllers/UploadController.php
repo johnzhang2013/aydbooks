@@ -13,6 +13,7 @@ class UploadController extends CommonController
         $upload_result['status'] = false;
         $upload_result['code'] = 200;
         $upload_result['data'] = [];
+        $upload_result['msg'] = trans('uploadimg.upload_success');
 
         if(!($request->hasFile('uimage'))){
             $upload_result['code'] = 400;

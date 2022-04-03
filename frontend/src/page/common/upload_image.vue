@@ -97,9 +97,9 @@
 				if(res.status == true && res.code == 200){
 					this.resized_image_urls = res.data.local_img_urls;
 					
-					this.$message('[' + res.code +'] ' + res.msg);
+					this.$message.success('[' + res.code +'] ' + res.msg);
 				}else{
-					this.$message('[' + res.code +'] ' + res.msg);
+					this.$message.error('[' + res.code +'] ' + res.msg);
 				}
 			},
 			
