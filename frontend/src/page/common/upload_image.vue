@@ -26,7 +26,9 @@
 					{{ this.$t('pages.uploadimg.upload_tip', {file_size_max: this.file_size_max, limit_total: this.files_limit_max}) }}
 				</div>
 			</el-upload>
-			<el-image v-for="url in resized_image_urls" :key="url" :src="url" lazy></el-image>
+		</div>
+		<div class="images_panel">
+			<el-image class="image_show" v-for="url in resized_image_urls" :key="url" :src="url" lazy></el-image>
 		</div>
 	</div>
 </template>
@@ -110,7 +112,7 @@
 		justify-content: center;
 		align-items: center;
 		margin:0 auto;
-		height: 100%;
+		height: 50%;
 		padding-left:300px;
 	}
 	.upload_panel .title {
@@ -118,25 +120,15 @@
 		text-align: center;
 		color: #707070;
 	}
-	
-	.upload-form {
-		border-radius: 6px;
-		background: #ffffff;
-		width: 400px;
-		padding: 25px 25px 5px 25px;
-		.el-input {
-			height: 38px;
-			input {
-				height: 38px;
-			}
-		}
-		.input-icon {
-			height: 39px;
-			width: 14px;
-			margin-left: 2px;
-		}
+	.images_panel {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin:0 auto;
+		height:50%;
+		padding-left:150px;
 	}
-		
+	
 	.common_nav_bar{
 		position: relative;
 		float: right;
