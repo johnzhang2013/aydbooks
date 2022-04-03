@@ -26,7 +26,7 @@ class Member{
 		$member = $this->loadMember($uid);
 		if($member == null) return null;
 
-		return $member->borrowed;
+		return $member->borrow_return_records;
 	}
 
 	public function loadMember($uid = 0){
