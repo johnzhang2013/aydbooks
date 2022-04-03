@@ -126,7 +126,8 @@ module.exports = {
 		uploadimg: {
 			upload_btn_text1: 'Please drag a file here, or',
 			upload_btn_text2: 'Click here to upload',
-			upload_tip: 'Only a jpg/png file can be accepted, and each image more than {file_size_max}MB,{limit_total} images at max'
+			upload_tip: 'Only a jpg/png file can be accepted, and each image more than {file_size_max}MB,{limit_total} images at max',
+			remove_confirm_tip: 'Are you sure to remove this uploaded file[{fname}]'
 		},
 		
 		pdfmerge: {

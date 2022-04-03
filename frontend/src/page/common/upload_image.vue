@@ -11,6 +11,7 @@
 				action="api/frontend/uploadimg"
 				:headers="request_headers"
 				:before-upload="beforeUploadCheck"
+				:before-remove="beforeRemoveHandle"
 				:on-exceed="handleFilesCountExceed"
 				:on-success="handleUploadSuccess"
 				:on-error="handleUploadError"
@@ -74,6 +75,15 @@
 				}
 				
 				return ((isJPG || isPNG) && imageSizeChk);
+			},
+			
+			beforeRemoveHandle(file, fileList) {
+				let confirm_res = this.$confirm(this.$t('pages.uploadimg.remove_confirm_tip', {fname: file.name}));
+				if(confirm_res == true){
+					this.resized_image_urls = [];
+				}
+				
+				return confirm_res;
 			},
 			
 			//show messages if file count exceed

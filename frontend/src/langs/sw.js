@@ -128,7 +128,8 @@ module.exports = {
 		uploadimg: {
 			upload_btn_text1: 'Dra filer hit, eller',
 			upload_btn_text2: 'Klicka för att ladda upp',
-			upload_tip: 'Endast jpg/png filer kan laddas upp, och bildstorleken bör inte överstiga {file_size_max}MB, Upp till {limit_total} bilder'
+			upload_tip: 'Endast jpg/png filer kan laddas upp, och bildstorleken bör inte överstiga {file_size_max}MB, Upp till {limit_total} bilder',
+			remove_confirm_tip: 'Är du säker på att du vill ta bort filen [{fname}]?'
 		},
 		
 		pdfmerge: {

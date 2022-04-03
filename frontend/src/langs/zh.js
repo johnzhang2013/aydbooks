@@ -129,7 +129,8 @@ module.exports = {
 		uploadimg: {
 			upload_btn_text1: '将图片拖到此处，或',
 			upload_btn_text2: '点击上传',
-			upload_tip: '只能上传jpg/png文件且不超过{file_size_max}MB，最多{limit_total}张图片!'
+			upload_tip: '只能上传jpg/png文件且不超过{file_size_max}MB，最多{limit_total}张图片!',
+			remove_confirm_tip: '您确定要删除文件[{fname}]吗?'
 		},
 		
 		pdfmerge: {
