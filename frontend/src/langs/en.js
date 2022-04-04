@@ -38,7 +38,8 @@ module.exports = {
 			validation : {
 				empty_email: 'You must enter your email',
 				invalid_email: 'Email address is invalid',
-				passwd_length: 'You need to enter at least 6 characters'
+				passwd_length: 'You need to enter at least 6 characters',
+				login_role: 'Please choose your login role'
 			}
 		},
 

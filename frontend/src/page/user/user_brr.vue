@@ -1,13 +1,15 @@
 <template>
 	<div class="brr_page">
-		<div v-if="loading" class="my-loading">
-			<i class="el-icon-loading"></i>
-		</div>
-		<div v-else-if="list_data.total == 0">
+		<div v-if="list_data.total == 0">
 			<el-empty :description="lang_texts.empty_results"></el-empty>
 		</div>
 		<div else>
-			<el-table :data="list_data.list" style="width: 100%" stripe border>
+			<el-table :data="list_data.list" style="width: 100%" stripe border
+				v-loading="loading"
+				:element-loading-text="lang_texts.loading_show_texts"
+				element-loading-spinner="el-icon-loading"
+				element-loading-background="rgba(238, 236, 226, 0.8)"
+			>
 				<el-table-column prop="record_no" fixed :label="lang_texts.columns_label.record_no" width="300px"></el-table-column>
 				<el-table-column prop="isbn" :label="lang_texts.columns_label.isbn" width="150px"></el-table-column>
 				<el-table-column prop="title" :label="lang_texts.columns_label.title" width="500px"></el-table-column>
@@ -36,7 +38,7 @@
 	export default {
 		data() {
 			return {
-				loading: false,
+				loading: true,
 				lang_texts: {
 					empty_results: this.$t('pages.profile.tabs_brr.empty_result'),
 					columns_label: {
@@ -75,6 +77,8 @@
 				const brr_filter = JSON.parse(JSON.stringify(this.filter));
 				this.$httpapi.post('/api/frontend/user/brr', {},
 					(res) => {
+						this.loading = false;
+						
 						if(res.status == true && res.code == 200){
 							this.list_data = res.data;
 						}else{

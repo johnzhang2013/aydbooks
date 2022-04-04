@@ -89,7 +89,7 @@
 								}
 							});	
 						}else{
-							this.$messsage({
+							this.$message({
 								message: res.msg,
 								type: 'error',
 								duration: 2000,//2 seconds
@@ -99,7 +99,7 @@
 						
 					},
 					(error) => {
-						this.$messsage({
+						this.$message({
 							message: error,
 							type: 'error',
 							duration: 2000,//2 seconds

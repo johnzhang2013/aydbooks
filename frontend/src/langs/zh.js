@@ -42,7 +42,8 @@ module.exports = {
 			validation: {
 				empty_email: '您必须输入您的邮箱',
 				invalid_email: '您的邮箱格式有误',
-				passwd_length: '您必须至少输入6个字符'
+				passwd_length: '您必须至少输入6个字符',
+				login_role: '请选择您的登录身份'
 			}
 		},
 		uploadimg: {

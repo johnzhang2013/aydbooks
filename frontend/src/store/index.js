@@ -35,32 +35,46 @@ const store = new Vuex.Store({
 			localStorage.setItem('u_token', userData.user_token);
 		},
 		
+		setLoginRole (state, loginRoleData){
+			state.u_gt = loginRoleData.gt;
+			localStorage.setItem('u_gt', loginRoleData.gt);
+		},
+		
 		setRememberLogin (state, loginData){
-			state.u_email = loginData.email;
-			state.u_pwd = loginData.password;
-			state.u_gt = loginData.gt;
-			state.u_rm = loginData.remember_me;
+			if(loginData.hasOwnProperty('email')){
+				state.u_email = loginData.email;
+				localStorage.setItem('u_email', loginData.email);
+			}
 			
-			localStorage.setItem('u_email', loginData.email);
-			localStorage.setItem('u_password', loginData.password);
-			localStorage.setItem('u_gt', loginData.gt);
-			localStorage.setItem('u_rememberme', loginData.remember_me);
+			if(loginData.hasOwnProperty('password')){
+				state.u_pwd = loginData.password;
+				localStorage.setItem('u_password', loginData.password);
+			}
+				
+			if(loginData.hasOwnProperty('remember_me')){
+				state.u_rm = loginData.remember_me;
+				localStorage.setItem('u_rememberme', loginData.remember_me);
+			}
 		},
 		
 		clearLoginCredentials (state){
 			state.u_name = null;
 			state.u_email = null;
 			state.u_pwd = null;
-			state.u_gt = null;
 			state.u_rm = null;
 			
+			localStorage.removeItem('u_name');
 			localStorage.removeItem('u_email');
 			localStorage.removeItem('u_password');
-			localStorage.removeItem('u_gt');
 			localStorage.removeItem('u_rememberme');
 		},
 		
-		logOut (state, u_name) {			
+		logOut (state) {
+			const u_rm = localStorage.getItem('u_rememberme');
+			if(u_rm == null || !Boolean(u_rm)){
+				localStorage.removeItem('u_gt');
+			}
+			
 			localStorage.removeItem('u_name');
 			localStorage.removeItem('u_token');
 		}
@@ -90,8 +104,9 @@ const store = new Vuex.Store({
 			context.commit('clearLoginCredentials');
 		},
 		
-		clearLoginCredentialsAction(context){
-			context.commit('clearLoginCredentials');
+		//set the login role as it is required when it logs out
+		setLoginRoleAction(context, loginRoleData) {
+			context.commit('setLoginRole', loginRoleData); 
 		}
     }
 })

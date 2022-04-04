@@ -4,7 +4,7 @@
 			<LanguageSwitcher></LanguageSwitcher>
 		</div>
 		<div class="common_nav_bar">
-			<CommonNavBar :workfor="home"></CommonNavBar>
+			<CommonNavBar workfor="home"></CommonNavBar>
 		</div>
 		<div class="login_panel">
 			<el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form">
@@ -94,7 +94,7 @@ export default {
 					{validator: validatePass, trigger: 'blur'}
 				],
 				gt:[
-					{required: true, message:' '}
+					{required: true, message: this.$t('forms.login.validation.login_role')}
 				]
 			}
 		}
@@ -149,6 +149,9 @@ export default {
 						//finish the remember me feature only after you log in successfully
 						this.doRememberMe();
 						
+						//set the login role 
+						this.setLoginRole();
+						
 						//also save the access token after you log in successfully
 						this.$store.dispatch('afterLoginAction', res.data).then(() => {
 							if(this.loginForm.gt == 'admin'){//you are logged in as an admin then it goes to member manage page
@@ -174,14 +177,19 @@ export default {
 				const login_data = {
 					email: this.loginForm.email,
 					password: encrypt(this.loginForm.password),
-					gt: this.loginForm.gt,
 					remember_me: this.loginForm.remember_me
 				};
 				this.$store.dispatch('yesRememberLoginAction', login_data);
 			} else {
 				this.$store.dispatch('noRememberLoginAction');
 			}
+		},
+		
+		setLoginRole() {
+			const login_role_data = {gt: this.loginForm.gt};
+			this.$store.dispatch('setLoginRoleAction', login_role_data);
 		}
+		
 	}
 }
 </script>

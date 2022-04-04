@@ -42,7 +42,8 @@ module.exports = {
 			validation : {
 				empty_email: 'Du måste ange din e-postadress',
 				invalid_email: 'Din e-post är i fel format',
-				passwd_length: 'Du måste ange minst 6 tecken'
+				passwd_length: 'Du måste ange minst 6 tecken',
+				login_role: 'Välj din inloggningsroll'
 			}
 		},
 		uploadimg: {
