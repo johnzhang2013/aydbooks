@@ -49,6 +49,10 @@ class Book{
         return BookCategoryModel::all();
     }
 
+    public function loadOneRandomBook(){
+    	return BookModel::inRandomOrder()->first();
+    }
+
     public function loadBook($book_id = 0){
     	return BookModel::find($book_id);
     }

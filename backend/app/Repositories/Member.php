@@ -29,6 +29,10 @@ class Member{
 		return $member->borrow_return_records;
 	}
 
+	public function getOneRandomMember(){
+		return MemberModel::inRandomOrder()->first();
+	}
+
 	public function loadMember($uid = 0){
 		return MemberModel::find($uid);
 	}
