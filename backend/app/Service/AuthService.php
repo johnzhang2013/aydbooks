@@ -25,7 +25,7 @@ class AuthService{
 		];
 	}
 	//Singleton use
-	public static function getInstance($auth_type = ''){
+	public static function getInstance($auth_type = 'user'){
 		if(!(self::$_instance instanceof self)){
 			self::$_instance = new self($auth_type);
 		}
