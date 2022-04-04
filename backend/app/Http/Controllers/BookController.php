@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Service\BookService;
 use Illuminate\Http\Request;
-//use Illuminate\Support\Facades\DB;
+use App\Service\AuthService;
 
 use App\Traits\BookCommonTrait;
 
@@ -33,7 +33,11 @@ class BookController extends CommonController
     public function borrow(Request $request){
         $isbn = $request->isbn;
 
-        $borrow_res = $this->bs_instance->borrowBook($isbn);
+        //get the member who is borrowing a book
+        $member = AuthService::getInstance()->user();
+        $member_id = $member->id;
+
+        $borrow_res = $this->bs_instance->borrowBook($member_id, $isbn);
         return response()->json($borrow_res);
     }
 

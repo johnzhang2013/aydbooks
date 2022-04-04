@@ -3,6 +3,7 @@ namespace App\Service;
 
 use App\Repositories\Book as BookRepository;
 use App\Repositories\Author as AuthorRepository;
+use App\Repositories\Member as MemberRepository;
 
 class BookService{
 	private static $_instance;
@@ -77,9 +78,9 @@ class BookService{
 		return $this->br_instance->loadBookCategoryByName($cate_name);
 	}
 
-	public function borrowBook($isbn = ''){
+	public function borrowBook($member_id = 0, $isbn = ''){
 		//step1 - check member if qualified
-		$member = AuthService::getInstance()->user();
+		$member = MemberRepository::getInstance()->loadMember($member_id);
 		if($member == null){
 			$this->_result['status'] = false;
 			$this->_result['code'] = 600;
