@@ -20,7 +20,7 @@
 						</template>
 						<template slot-scope="scope">
 							<el-button type="primary" size="small">{{ lang_texts.btn_edit }}</el-button>
-							<el-button type="primary" size="small">{{ lang_texts.btn_viewbooks }}</el-button>
+							<el-button type="primary" size="small" @click="getAuthorBookList(scope.row.id)">{{ lang_texts.btn_viewbooks }}</el-button>
 						</template>
 					</el-table-column>
 				</el-table>
@@ -36,15 +36,24 @@
 					:total="list_data.total">
 				</el-pagination>
 			</div>
+			<el-dialog v-if="isShowed" :visible.sync="isShowed" width="70%">
+				<AuthorBookList :vfilter="aFilter" vuse="authors"></AuthorBookList>
+			</el-dialog>
 		</div>		
 	</layout>
 </template>
 
 <script>
+	import AuthorBookList from '@/page/components/book_list.vue';
 	export default {
+		components: {AuthorBookList},
 		data(){
 			return{
 				loading: true,
+				isShowed: false,
+				aFilter: {
+					author_id: 0
+				},
 				lang_texts: {
 					loading_show_texts: this.$t('messages.common.loading_show_texts'),
 					empty_results: this.$t('pages.author.empty_results'),
@@ -97,6 +106,12 @@
 						}
 					}
 				);
+			},
+			
+			//Get book list of a specific author
+			getAuthorBookList(author_id) {
+				this.aFilter.author_id = author_id;
+				this.isShowed = true;
 			},
 			
 			//go to the specific page

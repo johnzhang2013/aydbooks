@@ -20,7 +20,7 @@
 						</template>
 						<template slot-scope="scope">
 							<el-button type="primary" size="small">{{ lang_texts.btn_edit }}</el-button>
-							<el-button type="primary" size="small">{{ lang_texts.btn_viewbooks }}</el-button>
+							<el-button type="primary" size="small" @click="getCategoryBookList(scope.row.id)">{{ lang_texts.btn_viewbooks }}</el-button>
 						</template>
 					</el-table-column>
 				</el-table>
@@ -36,15 +36,24 @@
 					:total="list_data.total">
 				</el-pagination>
 			</div>
+			<el-dialog v-if="isShowed" :visible.sync="isShowed" width="70%">
+				<CategoryBookList :vfilter="cFilter" vuse="bcates"></CategoryBookList>
+			</el-dialog>
 		</div>		
 	</layout>
 </template>
 
 <script>
+	import CategoryBookList from '@/page/components/book_list.vue';
 	export default {
+		components: {CategoryBookList},
 		data(){
 			return{
 				loading: false,
+				isShowed: false,
+				cFilter: {
+					category_id: 0,
+				},
 				lang_texts: {
 					loading_show_texts: this.$t('messages.common.loading_show_texts'),
 					
@@ -98,6 +107,12 @@
 						}
 					}
 				);
+			},
+			
+			//Get book list of a specific category
+			getCategoryBookList(category_id) {
+				this.cFilter.category_id = category_id;
+				this.isShowed = true;
 			},
 			
 			//go to the specific page
