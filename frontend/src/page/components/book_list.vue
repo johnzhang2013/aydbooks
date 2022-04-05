@@ -201,7 +201,7 @@
 			},
 			
 			borrowIt(isbn) {
-				if(this.vuse != 'home') return;
+				if(this.isHomePublic == false) return;
 				
 				//step1 - It requires a normal user to borrow it
 				let isLogged = this.checkAppLoginAsUser();
@@ -219,7 +219,7 @@
 			},
 			
 			checkAppLoginAsUser() {
-				if(this.vuse != 'home') return;
+				if(this.isHomePublic == false) return;
 				
 				let u_token = window.localStorage.getItem('u_token');
 				if(u_token) {
@@ -231,7 +231,7 @@
 			},
 			
 			doBorrowBook(isbn) {
-				if(this.vuse != 'home') return;
+				if(this.isHomePublic == false) return;
 
 				this.$httpapi.post(
 					'api/frontend/book/borrowit',
@@ -267,9 +267,15 @@
 			//request books list
 			getBooksList(){
 				this.loading = true;
+				let book_list_url = null;
+				if(this.isHomePublic){
+					book_list_url = '/api/frontend/book/list';
+				}else{
+					book_list_url = '/api/backend/book/list';
+				}
 				
 				const book_filter = JSON.parse(JSON.stringify(this.filter));
-				this.$httpapi.post('/api/backend/book/list', book_filter, 
+				this.$httpapi.post(book_list_url, book_filter, 
 					(res) => {
 						this.loading = false;
 						
