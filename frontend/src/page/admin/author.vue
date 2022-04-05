@@ -20,7 +20,7 @@
 						</template>
 						<template slot-scope="scope">
 							<el-button type="primary" size="small">{{ lang_texts.btn_edit }}</el-button>
-							<el-button type="primary" size="small" @click="getAuthorBookList(scope.row.id)">{{ lang_texts.btn_viewbooks }}</el-button>
+							<el-button type="primary" size="small" @click="getAuthorBookList(scope.row)">{{ lang_texts.btn_viewbooks }}</el-button>
 						</template>
 					</el-table-column>
 				</el-table>
@@ -36,7 +36,7 @@
 					:total="list_data.total">
 				</el-pagination>
 			</div>
-			<el-dialog v-if="isShowed" :visible.sync="isShowed" width="70%">
+			<el-dialog :title="author_title" v-if="isShowed" :visible.sync="isShowed" width="70%">
 				<AuthorBookList :vfilter="aFilter" vuse="authors"></AuthorBookList>
 			</el-dialog>
 		</div>		
@@ -54,6 +54,7 @@
 				aFilter: {
 					author_id: 0
 				},
+				author_title: null,
 				lang_texts: {
 					loading_show_texts: this.$t('messages.common.loading_show_texts'),
 					empty_results: this.$t('pages.author.empty_results'),
@@ -109,8 +110,10 @@
 			},
 			
 			//Get book list of a specific author
-			getAuthorBookList(author_id) {
-				this.aFilter.author_id = author_id;
+			getAuthorBookList(author) {
+				this.author_title = this.$t('pages.author.book_list_title', {author_name: author.name});
+				
+				this.aFilter.author_id = author.id;
 				this.isShowed = true;
 			},
 			

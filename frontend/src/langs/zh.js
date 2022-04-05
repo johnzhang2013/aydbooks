@@ -10,11 +10,7 @@ module.exports = {
 			lang_switch_success: '系统语言切换成功',
 			loading_show_texts: '系统正在拼命加载中...'
 		},
-		
-		auth: {
-			
-		},
-		
+
 		borrow: {
 			not_logged: '你必须以用户身份登录系统才能借书!'
 		}
@@ -99,21 +95,6 @@ module.exports = {
 				onshelfdate: '上架日期',
 				authors:'作者',
 				categories: '类目'
-			},
-			list: {
-				empty_result: '没有可用的书籍',
-				column: {
-					isbn: 'ISBN',
-					title: '书名',
-					author: '作者',
-					category: '类目',
-					stock: '库存',
-					borrowed: '借阅量',
-					onshelf_at: '上架日期',
-					actions: '操作',
-					btn_borrow: '借书',
-					btn_view: '查看'
-				}
 			}
 		},
 		
@@ -191,7 +172,8 @@ module.exports = {
 			book_total: '著作数量',
 			filter_placeholder: '请输入作家名称',
 			btn_edit: '编辑',
-			btn_viewbooks: '著作清单'
+			btn_viewbooks: '著作清单',
+			book_list_title: '作家 {author_name} 的著作清单'
 		},
 		
 		book_category: {
@@ -201,11 +183,11 @@ module.exports = {
 			book_total: '作品数量',
 			filter_placeholder: '请输入类目名称',
 			btn_edit: '编辑',
-			btn_viewbooks: '书籍列表'
+			btn_viewbooks: '书籍列表',
+			book_list_title: '分类 {category_name} 下的书籍列表'
 		},
 		
 		books: {
-			empty_results: '系统当前无书籍信息',
 			fliter: {
 				isbn: 'ISBN',
 				isbn_placeholder: '请输入一个书籍的ISBN',
@@ -221,22 +203,6 @@ module.exports = {
 				onshelf_start: '开始日期',
 				onshelf_to: '到',
 				onshelf_end: '结束日期'
-			},
-			column: {
-				isbn: 'ISBN',
-				title: '书名',
-				author: '作家',
-				category: '类目',
-				stock_qty: '库存',
-				onshelf_at: '上架日期',
-				borrowed_count: '借阅量',
-				overdued_count: '逾期量',
-				active: '是否可借',
-				actions: '操作',
-				btn_action_view: '查看',
-				btn_action_edit: '编辑',
-				btn_action_delete: '删除',
-				btn_action_records: '借阅记录'
 			}
 		},
 		
@@ -278,5 +244,28 @@ module.exports = {
 		user_profile: '个人中心',
 		upload_img: '图片上传',
 		pdf_merge: 'PDF文件合并'
-	}	
+	},
+	
+	components: {
+		book_list: {			
+			empty_results: '系统当前无书籍信息',
+			column: {
+				isbn: 'ISBN',
+				title: '书名',
+				author: '作家',
+				category: '类目',
+				stock_qty: '库存',
+				onshelf_at: '上架日期',
+				borrowed_count: '借阅量',
+				overdued_count: '逾期量',
+				active: '是否可借',
+				actions: '操作',
+				btn_action_view: '查看',
+				btn_action_edit: '编辑',
+				btn_action_delete: '删除',
+				btn_action_records: '借阅记录',
+				btn_action_borrow: '借书'
+			}
+		}
+	}
 }

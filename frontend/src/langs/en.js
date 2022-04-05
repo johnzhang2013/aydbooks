@@ -42,7 +42,6 @@ module.exports = {
 				login_role: 'Please choose your login role'
 			}
 		},
-
 		uploadimg: {
 			validation: {
 				upload_file_type: 'We only accept jpg/png image.',
@@ -96,21 +95,6 @@ module.exports = {
 				onshelfdate: 'Onshelf Date',
 				authors:'Author',
 				categories: 'Category'
-			},
-			list: {
-				empty_result: 'There are no books available',
-				column: {
-					isbn: 'ISBN',
-					title: 'Title',
-					author: 'Author',
-					category: 'Category',
-					stock: 'Stock',
-					borrowed: 'Borrow Count',
-					onshelf_at: 'Onshelf At',
-					actions: 'Actions',
-					btn_borrow: 'Borrow It',
-					btn_view: 'Detail'
-				}
 			}
 		},
 		
@@ -188,7 +172,8 @@ module.exports = {
 			book_total: 'Number of Works',
 			filter_placeholder: 'Please enter the author name',
 			btn_edit: 'Edit',
-			btn_viewbooks: 'Book List'
+			btn_viewbooks: 'Book List',
+			book_list_title: 'List of works by the author[{author_name}]'
 		},
 		
 		book_category: {
@@ -198,11 +183,11 @@ module.exports = {
 			book_total: 'Books Total',
 			filter_placeholder: 'Please input the category name',
 			btn_edit: 'Edit',
-			btn_viewbooks: 'Books List'
+			btn_viewbooks: 'Books List',
+			book_list_title: 'The books list of category {category_name}'
 		},
 		
 		books: {
-			empty_results: 'There are no any books available',
 			fliter: {
 				isbn: 'ISBN',
 				isbn_placeholder: 'Please input the ISBN of a book',
@@ -218,22 +203,6 @@ module.exports = {
 				onshelf_start: 'Start',
 				onshelf_to: 'To',
 				onshelf_end: 'End'
-			},
-			column: {
-				isbn: 'ISBN',
-				title: 'Title',
-				author: 'Author',
-				category: 'Category',
-				stock_qty: 'Stocks',
-				onshelf_at: 'Onshelf Date',
-				borrowed_count: 'Borrowed Total',
-				overdued_count: 'Overdued Total',
-				active: 'Active',
-				actions: 'Actions',
-				btn_action_view: 'Detail',
-				btn_action_edit: 'Edit',
-				btn_action_delete: 'Delete',
-				btn_action_records: 'Records'
 			}
 		},
 		
@@ -275,5 +244,28 @@ module.exports = {
 		user_profile: 'My Profile',
 		upload_img: 'Image Upload',
 		pdf_merge: 'PDF Merge'
+	},
+	
+	components: {
+		book_list: {
+			empty_results: 'There are no any books available',
+			column: {
+				isbn: 'ISBN',
+				title: 'Title',
+				author: 'Author',
+				category: 'Category',
+				stock_qty: 'Stocks',
+				onshelf_at: 'Onshelf Date',
+				borrowed_count: 'Borrowed Total',
+				overdued_count: 'Overdued Total',
+				active: 'Active',
+				actions: 'Actions',
+				btn_action_view: 'Detail',
+				btn_action_edit: 'Edit',
+				btn_action_delete: 'Delete',
+				btn_action_records: 'Records',
+				btn_action_borrow: 'Borrow It'
+			}
+		}
 	}
 }

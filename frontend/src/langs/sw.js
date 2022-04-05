@@ -10,11 +10,7 @@ module.exports = {
 			lang_switch_success: 'Byt språk framgångsrikt!',
 			loading_show_texts: 'Läser in...',
 		},
-		
-		auth: {
-			
-		},
-		
+
 		borrow: {
 			not_logged: 'Du måste logga in som användare för att låna den!'
 		}
@@ -90,6 +86,7 @@ module.exports = {
 				}
 			}
 		},
+
 		home:{
 			title: 'Välkommen till AYD Bok Systemet',
 			filter: {
@@ -98,21 +95,6 @@ module.exports = {
 				onshelfdate: 'Lanseringsdag',
 				authors:'Författare',
 				categories: 'Kategori'
-			},
-			list: {
-				empty_result: 'Det finns inga böcker tillgängliga',
-				column: {
-					isbn: 'ISBN',
-					title: 'Titel',
-					author: 'Författare',
-					category: 'Kategori',
-					stock: 'Stock',
-					borrowed: 'Låna räkna',
-					onshelf_at: 'Lanseringsdag',
-					actions: 'Fungera',
-					btn_borrow: 'Låna den',
-					btn_view: 'Detaljer'
-				}
 			}
 		},
 		
@@ -190,7 +172,8 @@ module.exports = {
 			book_total: 'Antal Verk',
 			filter_placeholder: 'Ange författarens namn',
 			btn_edit: 'Redigera',
-			btn_viewbooks: 'Bok Lista'
+			btn_viewbooks: 'Bok Lista',
+			book_list_title: 'Lista över verk av författaren [{author_name}]'
 		},
 		
 		book_category: {
@@ -200,11 +183,11 @@ module.exports = {
 			book_total: 'Böcker Totalt',
 			filter_placeholder: 'Vänligen ange kategorinamnet',
 			btn_edit: 'Redigera',
-			btn_viewbooks: 'Böcker Lista'
+			btn_viewbooks: 'Böcker Lista',
+			book_list_title: 'Böckerlistan i kategorin {category_name}'
 		},
 		
 		books: {
-			empty_results: 'Det finns inga tillgängliga böcker',
 			fliter: {
 				isbn: 'ISBN',
 				isbn_placeholder: 'Ange ISBN för en bok',
@@ -220,22 +203,6 @@ module.exports = {
 				onshelf_start: 'Start',
 				onshelf_to: 'Till',
 				onshelf_end: 'Slutet'
-			},
-			column: {
-				isbn: 'ISBN',
-				title: 'Titel',
-				author: 'Författar',
-				category: 'Kategori',
-				stock_qty: 'Lagermängd',
-				onshelf_at: 'Datum på hyllan',
-				borrowed_count: 'Lånade Totalt',
-				overdued_count: 'Försenad Totalt',
-				active: 'Aktiva',
-				actions: 'Handlingar',
-				btn_action_view: 'Detaljer',
-				btn_action_edit: 'Redigera',
-				btn_action_delete: 'Radera',
-				btn_action_records: 'Uppgifter'
 			}
 		},
 		
@@ -277,5 +244,28 @@ module.exports = {
 		user_profile: 'Ditt konto',
 		upload_img: 'Ladda Upp Bild',
 		pdf_merge: 'PDF Fungerar'
+	},
+	
+	components: {
+		book_list: {
+			empty_results: 'Det finns inga tillgängliga böcker',
+			column: {
+				isbn: 'ISBN',
+				title: 'Titel',
+				author: 'Författar',
+				category: 'Kategori',
+				stock_qty: 'Lagermängd',
+				onshelf_at: 'Datum på hyllan',
+				borrowed_count: 'Lånade Totalt',
+				overdued_count: 'Försenad Totalt',
+				active: 'Aktiva',
+				actions: 'Handlingar',
+				btn_action_view: 'Detaljer',
+				btn_action_edit: 'Redigera',
+				btn_action_delete: 'Radera',
+				btn_action_records: 'Uppgifter',
+				btn_action_borrow: 'Låna den'
+			}
+		}
 	}
 }
