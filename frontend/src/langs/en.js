@@ -162,7 +162,8 @@ module.exports = {
 			filter_placeholder_name: 'Please input an username',
 			filter_placeholder_email: 'Please input an Email',
 			btn_edit: 'Edit',
-			btn_viewbrrs: 'Borrow&Return Records'
+			btn_viewbrrs: 'Borrow&Return Records',
+			brr_list_title: 'The Borrow&Return Records of member {member_name}'
 		},
 		
 		author: {

@@ -162,7 +162,8 @@ module.exports = {
 			filter_placeholder_name: 'Vänligen ange medlemmens användarnamn',
 			filter_placeholder_email: 'Vänligen ange medlemsmail',
 			btn_edit: 'Redigera',
-			btn_viewbrrs: 'Låna Skivor'
+			btn_viewbrrs: 'Låna Skivor',
+			brr_list_title: 'Lne- och returposterna fr medlemmen {member_name}'
 		},
 		
 		author: {

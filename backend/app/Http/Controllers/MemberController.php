@@ -43,6 +43,7 @@ class MemberController extends CommonController
             foreach($members as $_member){
                 $_tmp_member = [];
 
+                $_tmp_member['id'] = $_member->id;
                 $_tmp_member['name'] = $_member->name;
                 $_tmp_member['email'] = $_member->email;
                 $_tmp_member['is_active'] = $_member->is_active;

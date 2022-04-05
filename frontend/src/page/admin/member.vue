@@ -33,7 +33,7 @@
 						</template>
 						<template slot-scope="scope">
 							<el-button type="primary" size="small">{{ lang_texts.btn_edit }}</el-button>
-							<el-button type="primary" size="small">{{ lang_texts.btn_viewbrrs }}</el-button>
+							<el-button type="primary" size="small" @click="getMemberBRRList(scope.row)">{{ lang_texts.btn_viewbrrs }}</el-button>
 						</template>
 					</el-table-column>
 				</el-table>
@@ -49,16 +49,26 @@
 					:total="list_data.total">
 				</el-pagination>
 			</div>
+			<el-dialog :title="memeber_title" v-if="isShowed" :visible.sync="isShowed" width="70%">
+				<MemberBrrList :vfilter="mFilter" vuse="members"></MemberBrrList>
+			</el-dialog>
 		</div>
 		
 	</layout>
 </template>
 
 <script>
+	import MemberBrrList from '@/page/components/brr_list.vue';
 	export default {
+		components:{MemberBrrList},
 		data() {
 			return{
 				loading: true,
+				isShowed: false,
+				mFilter: {
+					user_id: 0
+				},
+				
 				lang_texts: {
 					loading_show_texts: this.$t('messages.common.loading_show_texts'),
 					empty_results: this.$t('pages.members.empty_results'),
@@ -153,6 +163,14 @@
 					}
 				);
 			},
+			
+			//Get borrow return records list of a specific member
+			getMemberBRRList(member) {
+				this.memeber_title = this.$t('pages.members.brr_list_title', {member_name: member.name});
+				
+				this.mFilter.user_id = member.id;
+				this.isShowed = true;
+			}
 		}
 	}
 </script>

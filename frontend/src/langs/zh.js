@@ -162,7 +162,8 @@ module.exports = {
 			filter_placeholder_email: '请输入会员邮箱',
 			
 			btn_edit: '编辑',
-			btn_viewbrrs: '会员-借阅记录'
+			btn_viewbrrs: '会员-借阅记录',
+			brr_list_title: '会员 {member_name} 的借阅记录'
 		},
 		
 		author: {
