@@ -25,4 +25,11 @@ class BorrowReturnRecord extends Model
         });
     }
 
+    public function member(){
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function book(){
+        return $this->belongsTo(Book::class);
+    }
 }

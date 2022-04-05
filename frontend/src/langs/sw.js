@@ -206,6 +206,31 @@ module.exports = {
 			}
 		},
 		
+		brr: {
+			filter: {
+				isbn: 'ISBN',
+				isbn_placeholder: 'Ange ISBN för en bok',
+				title: 'Boktitel',
+				title_placeholder: 'Vänligen ange titeln på en bok',
+				member: 'Användarnamn',
+				all_members: 'Allt',	
+				status: 'Status',
+				all_status: 'Allt',
+				borrowed_date: 'Lånat datum',
+				returned_date: 'Returdatum',
+				deadline_date: 'Deadline Datum',
+				date_start: 'Start',
+				date_end: 'Slutet',
+				date_to: 'Till',
+				sys_status: {
+					borrowing_normal: 'Normala under lån',
+					borrowing_overdued: 'Förfallna under lån',
+					returned_normal: 'Normala tillbaka',
+					returned_overdued: 'Förfallna tillbaka'
+				}
+			}
+		},
+		
 		profile: {
 			tab_profile: 'Personlig information',
 			tab_brr: 'Låna skivor',
@@ -265,6 +290,22 @@ module.exports = {
 				btn_action_delete: 'Radera',
 				btn_action_records: 'Uppgifter',
 				btn_action_borrow: 'Låna den'
+			}
+		},
+		
+		brr_list: {
+			empty_results: 'Inga boklån eller returnerade poster',
+			column: {
+				record_no: 'Postnr',
+				member_name: 'Användarnamn',
+				book_isbn: 'ISBN',
+				book_title: 'Boktitel',
+				status: 'Status',
+				overdued_days: 'Försenad(dagar)',
+				deadline_daysleft: 'Kvar(dagar)',
+				deadline_datetime: 'Deadline Datum',
+				borrowed_datetime: 'Lånat Datum',
+				returned_datetime: 'Returdatum',
 			}
 		}
 	}

@@ -77,6 +77,14 @@ class Book{
     	}
     }
 
+    public function listBorrowReturnRecords($filters = [], $paginate = []){
+    	if(empty($filters)){
+    		return BRRModel::paginate($paginate['limit'], ['*'], 'page', $paginate['offset']);
+    	}else{
+    		return BRRModel::where($filters)->paginate($paginate['limit'], ['*'], 'page', $paginate['offset']);
+    	}
+    }
+
     public function listTopBorrowedCountBooks($n = 10){
     	return BookModel::OrderBy('borrowed_count', 'desc')->orderBy('id', 'asc')->limit($n)->get();
     }

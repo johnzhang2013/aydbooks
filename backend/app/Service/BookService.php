@@ -62,6 +62,10 @@ class BookService{
 		return $this->br_instance->listBookCategory($filters, $paginate);
 	}
 	
+	public function listBorrowReturnRecords($filters = [], $paginate = []){
+		return $this->br_instance->listBorrowReturnRecords($filters, $paginate);
+	}
+
 	public function createBook($book_data = []){
 		return $this->br_instance->createBook($book_data);
 	}

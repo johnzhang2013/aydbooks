@@ -33,6 +33,10 @@ class Member{
 		return MemberModel::inRandomOrder()->first();
 	}
 
+	public function loadMembers(){
+		return MemberModel::all();
+	}
+
 	public function loadMember($uid = 0){
 		return MemberModel::find($uid);
 	}

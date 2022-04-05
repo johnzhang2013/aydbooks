@@ -206,6 +206,31 @@ module.exports = {
 			}
 		},
 		
+		brr: {
+			filter: {
+				isbn: 'ISBN',
+				isbn_placeholder: '请输入书籍的ISBN',	
+				title: '书名',
+				title_placeholder: '请输入书籍的名称',
+				member: '用户名',
+				all_members: '所有',	
+				status: '借阅状态',
+				all_status: '所有',
+				borrowed_date: '借书日期',
+				returned_date: '还书日期',
+				deadline_date: '截止期限',
+				date_start: '开始日期',
+				date_end: '结束日期',
+				date_to: '到',
+				sys_status: {
+					borrowing_normal: '正常在借',
+					borrowing_overdued: '逾期在借',
+					returned_normal: '正常归还',
+					returned_overdued: '逾期归还'
+				}
+			}
+		},
+		
 		profile: {
 			tab_profile: '个人信息',
 			tab_brr: '借阅记录',
@@ -265,6 +290,22 @@ module.exports = {
 				btn_action_delete: '删除',
 				btn_action_records: '借阅记录',
 				btn_action_borrow: '借书'
+			}
+		},
+		
+		brr_list: {
+			empty_results: '系统当前无图书借阅记录',
+			column: {
+				record_no: '编号',
+				member_name: '用户名',
+				book_isbn: 'ISBN',
+				book_title: '书名',
+				status: '状态',
+				overdued_days: '超期天数',
+				deadline_daysleft: '剩余天数',
+				deadline_datetime: '截止日期',
+				borrowed_datetime: '借书日期',
+				returned_datetime: '还书日期',
 			}
 		}
 	}

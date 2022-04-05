@@ -48,6 +48,8 @@ Route::group(['prefix' => 'backend'], function($router) {
 
         Route::post('members/list', 'MemberController@list');
         
+        Route::get('brr/members', 'BorrowReturnController@members');
+        Route::post('brr/list', 'BorrowReturnController@list');
         /*Route::get('member/view', 'MemberController@view');
 
         Route::post('member/search', 'MemberController@search');

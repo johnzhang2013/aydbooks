@@ -206,6 +206,31 @@ module.exports = {
 			}
 		},
 		
+		brr: {
+			filter: {
+				isbn: 'ISBN',
+				isbn_placeholder: 'Please input the ISBN of a book',
+				title: 'Book Title',
+				title_placeholder: 'Please input the title of a book',
+				member: 'Username',
+				all_members: 'All',	
+				status: 'Status',
+				all_status: 'All',
+				borrowed_date: 'Borrowed Date',
+				returned_date: 'Returned Date',
+				deadline_date: 'Deadline Date',
+				date_start: 'Start',
+				date_end: 'End',
+				date_to: 'To',
+				sys_status: {
+					borrowing_normal: 'Normal borrowing',
+					borrowing_overdued: 'Overdued borrowing',
+					returned_normal: 'Normal returned',
+					returned_overdued: 'Overdued returned'
+				}
+			}
+		},
+		
 		profile: {
 			tab_profile: 'Account Information',
 			tab_brr: 'Borrow Return Records',
@@ -265,6 +290,22 @@ module.exports = {
 				btn_action_delete: 'Delete',
 				btn_action_records: 'Records',
 				btn_action_borrow: 'Borrow It'
+			}
+		},
+		
+		brr_list: {
+			empty_results: 'No any borrow or return records.',
+			column: {
+				record_no: 'Record No.',
+				member_name: 'Username',
+				book_isbn: 'ISBN',
+				book_title: 'Book Title',
+				status: 'Status',
+				overdued_days: 'Overdued(Days)',
+				deadline_daysleft: 'Left(Days)',
+				deadline_datetime: 'Deadline Date',
+				borrowed_datetime: 'Borrowed Date',
+				returned_datetime: 'Returned Date',
 			}
 		}
 	}

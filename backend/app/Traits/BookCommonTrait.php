@@ -21,4 +21,18 @@ trait BookCommonTrait{
     private function displayBorrowReturnStatus($brr_status = 0){
         return trans('book.common.brr_status_'.$brr_status);
     }
+
+    private function calcDeadlineDaysLeft($status = 0, $borrow_datetime = 0, $deadline_datetime = 0){
+        $bs_cfg = config('books.borrowed_status');
+
+        //no need to display if a book is returned
+        if($status == $bs_cfg['BeReturnedNormal'] || $status == $bs_cfg['BeReturnedOverdued']) return '-';
+
+        $borrow_time = strtotime($borrow_datetime);
+        $deadline_time = strtotime($deadline_datetime);
+
+        $left_days = ($deadline_time - $borrow_time) / (24 * 3600);
+
+        return $left_days;
+    }
 }

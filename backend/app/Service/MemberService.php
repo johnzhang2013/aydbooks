@@ -28,6 +28,20 @@ class MemberService{
 	}
 
     ########Business Methods For Controllers############
+    public function loadAllMembers(){
+        $members = $this->mr_instance->loadMembers();
+        $members_data = [];
+
+        foreach($members as $_member){
+            $members_data[] = [
+                'label' => $_member->name,
+                'value' => $_member->id
+            ];
+        }
+
+        return $members_data;
+    }
+
     public function register($mdata = []){
         //more logic here
         //check if this user already exists
