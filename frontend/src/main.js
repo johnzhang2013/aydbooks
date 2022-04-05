@@ -29,7 +29,11 @@ const router = new VueRouter({
 const whiteList = ["/", "/login", "/uploadimg", "/pdfmerge"];
 router.beforeEach((to, from, next) => {
 	if (whiteList.indexOf(to.path) !== -1) {//no need to auth the vistor for the page in the whitelist
-		next();
+		if(to.path == '/login'){
+			next('/');
+		}else{
+			next();
+		}
 	} else {
 		let token = window.localStorage.getItem('u_token');
 		if (token) {//check if logged
